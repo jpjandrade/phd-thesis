@@ -1,0 +1,82 @@
+% book example for classicthesis.sty
+\documentclass[
+  % Replace twoside with oneside if you are printing your thesis on a single side
+  % of the paper, or for viewing on screen.
+  %oneside,
+  twoside,
+  11pt, a4paper,
+  footinclude=true,
+  headinclude=true,
+  cleardoublepage=empty
+]{scrbook}
+
+\usepackage[linedheaders,parts,pdfspacing]{classicthesis}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{acronym}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[annote,fixlanguage]{babelbib}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{mdwlist}
+\usepackage{mathrsfs}
+\usepackage{nicefrac}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{subfig}
+\DeclareMathOperator{\sen}{sen}  \newcommand{\del}{\partial}
+\newcommand{\R}{\mathds{R}} \newcommand{\C}{\mathds{C}}
+\newcommand{\N}{\mathds{N}} \newcommand{\Q}{\mathds{Q}}
+\newcommand{\Z}{\mathds{Z}}
+\DeclareMathOperator*{\argmin}{arg\,min}\DeclareMathOperator*{\argmax}{arg\,max}
+
+
+\title{Statistical Mechanics of Economic Systems}
+\author{João Pedro Jericó}
+
+\begin{document}
+
+\maketitle
+
+\include{FrontBackMatter/abstract}
+\include{FrontBackMatter/dedication}
+\include{FrontBackMatter/acknowledgements}
+\include{FrontBackMatter/declaration}
+\include{FrontBackMatter/contents}
+
+\part{Introduction}
+
+Testing \cite{JaynesBook}
+
+\chapter{Statistical Mechanics and Inference}
+
+\section{A Section}
+% \lipsum[1] % This is just some filler text. Remove before you start writing
+
+\chapter{General Equilibrium Theory}
+
+
+
+\section{Another Section}
+% \lipsum[1] % This is just some filler text. Remove before you start writing
+
+
+\part{Results}
+
+\chapter{Inefficient Consumer}
+
+
+
+\chapter{Aggregation}
+
+\chapter{Inequality}
+
+\bibliography{bib}{}
+\bibliographystyle{plain}
+    
+\end{document}

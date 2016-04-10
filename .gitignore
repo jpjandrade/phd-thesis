@@ -1,0 +1,11 @@
+.gitignore~
+.#main.tex
+main.aux
+main.bbl
+main.blg
+main.lof
+main.log
+main.lot
+main.out
+main.synctex.gz
+main.toc
