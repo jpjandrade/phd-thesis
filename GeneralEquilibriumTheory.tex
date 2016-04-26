@@ -1,0 +1,128 @@
+In this chapter we will discuss some of the economic theories behind
+the work of the thesis. Mainly, we will introduce General Equilibrium
+Theory and some of its main theorems.
+
+General Equilibrium Theory is a mature and consolidated field of
+Economics \cite{Arrow54, mascolell, mckenzie} which aims to
+characterize the existence and properties of equilibria in certain
+market settings. Economic systems are assumed to frequently have
+actors with opposing goals: the owner of a good wants to sell it for
+the highest possible price, while its potential buyers would like to
+purchase it for as low as possible. Fishermen would like to catch as
+many fishes as possible as long as their peers care to not also overdo
+it otherwise they may extinguish the oceans. In this way, one expects
+economies and markets to converge to a certain steady state and among
+other things, General Equilibrium Theory characterizes these steady
+states in a rigorous manner. In this sense, it's also a theory in
+Microeconomic, because it explains macrobehavior from the incentives
+of microscopic agents.
+
+The exposition in this chapter is mostly adapted from \cite{mascolell}
+and will be considerably more formal than the rest of this
+thesis. This is due to the way the discipline is commonly studied, as
+is in itself an interesting fact which we will discuss 
+
+In General Equilibrium Theory, an economy is defined through the
+following components: we assume $J$ consumers, $N$ firms and $M$
+goods. Each consumer has a consumption set $X_j$ which contains all
+possible consumption bundles $x_j = (x_j^1, \ldots x_j^M)$ that the
+consumer has access to, ie, each bundle $x_j$ is a $M-$dimensional
+vector with nonnegative entries (we are assuming he cannot consume a
+negative amount of a good). $X_j$ is limited by ``physical''
+contraints, such as no access to water or bread, but not monetary
+constraints, which will arise later.
+
+The consumer also has an utility function $U_j(x)$ that takes every
+element $x_j \in X_j$ to a real number, representing how much the
+consumer values each bundle of his consumption set. This allows us to
+define define a preference relationship over the elements in $X_j$
+(ie, if the consumer prefers bundle $x$ to $x'$), which is
+\emph{complete}\footnote{For every $x, x' \in X_j$, either
+  $U_j(x) \geq U_j(x')$ or $U_j(x) \leq U_j(x')$.} and
+\emph{transitive}\footnote{For every $x, y, z \in X_j$, if
+  $U_j(x) \geq U_j(y)$ and $U_j(y) \geq U_j(z)$, then
+  $U_j(x) \geq U_j(z)$.}, two standard requirements in Economics for
+rational behavior.
+
+Finally, the consumer is also endowed with an initial bundle of goods
+$\omega_j = (\omega_j^1, \ldots, \omega_j^M)$, $\omega_j^\mu \geq 0$
+which will define his budget given a set of prices for the goods and
+will constraint his choices on $X_j$.
+
+Each firm $i$ has a production set $\Xi_i$ of technologies
+$\xi_i = (\xi_i^1, \ldots, \xi_i^M)$ which it is able to operate. Unlike
+consumption bundles, which are final allocations and therefore must be
+nonnegative, technologies can be any real number: the negative entries
+are inputs and the positive entries are outputs that the firm can
+operate. $\Xi_i$ is also limited only by ``physical'' constraints, not
+by monetary constraints. A firm that has $\xi_i = (-1, 2)$ in its
+production set is able to transform one unit of good 1 into two units
+of good 2. It won't necessarily be able to transform two units of good
+1 into four units of good 2, for that it must also have $\xi'_i = (-2,
+4)$ in $\Xi_i$. It might be the case, for example, that companies get more efficient
+with production and therefore it might have $\xi''_i = (-2, 6)$ in its
+production set.
+
+In General Equilibrium Theory, an economy is formally defined as the tuple
+
+\begin{equation}
+  E = \left(\{(X_j,U_j)\}_{j=1}^J,
+    \{\Xi_i\}_{i=1}^N, \{\omega_j\}_{j=1}^J \right).\label{eq:econGE}
+\end{equation}
+
+One of the theory's assumptions is that the economy described is
+\emph{complete}, that is, every agent can exchange every good with no
+transaction costs and complete information about the firm's
+technologies, other consumer's consumption, etc. Also, a good $\mu$
+contains all the possible information that a consumer would take into
+account when making his choice. That is, among the space of goods we
+could have ``umbrella'' and ``chocolate'', or we could also have ``an
+umbrella on August 13th, 2016 in Sao Paulo with 50\% chance of rain''
+and ``an umbrella on December 12th, 2016 in Chicago with 90\% chance
+of rain''. 
+
+It's assumed that agents are \emph{price-takers}, that is, they are
+unable to affect the market prices and therefore take them as a
+given. The prices of the goods are given by a $M-$dimensional vector
+$p = (p_1, \ldots, p_M)$, where each price is a strictly positive
+quantity, ie, $p_\mu>0$ for all $\mu$. This assumes that goods have global
+prices, which is consistent with the completeness assumption: there is
+no reason why the market prices should be different for certain
+consumers or firms if they have complete knowledge and no transaction
+costs.
+
+With a price vector $p$ defined, we say the consumer $j$ has a budget
+$B_j = p\cdot \omega_j$, which is the monetary value of his initial
+endowment. Any bundle he chooses to purchase will cost him
+$p\cdot x_j$. His objective, therefore, is to find the best bundle
+$x_j$ he is able to afford, that is:
+
+\begin{equation}
+  \label{eq:consumer_obj}
+  \max_{x_j \in X_j} U(x_j), \quad \text{s.t. } p\cdot x_j \leq p\cdot \omega_j
+\end{equation}
+
+The firms, on the other hand, have an operating profit for each
+technology given by $p \cdot \xi_i$, which is how much money they earn
+by selling their outputs ($\xi_i^\mu > 0$) minus how much they spend
+purchasing the inputs ($\xi_i^\mu < 0$). Their objective is to maximize
+their profits, that is:
+
+\begin{equation}
+  \label{eq:firm_obj}
+  \max_{\xi_i \in \Xi_i} p \cdot \xi_i
+\end{equation}
+
+
+
+
+
+
+
+% general equilibrium theory
+% def of walrasian eq, market clearing, welfare theorems
+% criticisms
+% diff between economic equilibria and 
+\cite{thurner} \cite{Schumpeter39} \cite{savage} \cite{mascolell}
+\cite{Roughgarden10, Gintis07}
+\cite{Tversky74, Kahneman79, Tversky81}

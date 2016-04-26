@@ -1,6 +1,6 @@
 .gitignore~
 .#main.tex
-main.aux
+*.aux
 main.bbl
 main.blg
 main.lof

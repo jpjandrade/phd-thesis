@@ -1,0 +1,115 @@
+In this chapter we will discuss the Random Linear Economy model
+\cite{DeMartinoMarsili04} presented by Andrea De Martino, Matteo
+Marsili and Isaac Pérez Castillo which will be the basis of some of
+the applications discussed in the rest of this thesis.
+
+An economy in this model is defined by $M$
+goods, $N$ firms, with a technological density parameter of $n = N/M$,
+and one representative consumer. The consumer has an initial random
+wealth $x_0 = (x_0^1, \ldots, x_0^M)$, $x_0^\mu \geq 0$ drawn
+independently from an exponential distribution, and wishes to improve
+its welfare in the market according to a separable utility function
+$U(x) = \sum_{\mu=1}^M u(x^\mu)$.
+
+Each firm in the market has a random technology
+$\xi_i = (\xi_i^1, \ldots, \xi_i^\mu)$, where $\xi_i^\mu<0$ represents
+an input and $\xi_i^\mu>0$ represents an output.  Each firm $i$ only
+has one technology, and its only decision is the scale $s_i$ at which
+it operates this technology, ie, each company represents a
+transformation in the space of goods given by the $M$ dimensional
+vector $s_i \xi_i$. The elements $\xi_i^\mu$ are drawn from a
+$\mathcal{N}(0, M^{-1})$ normal distribution, normalized so that
+$\sum_{\mu=1}^M \xi_i^\mu = -\epsilon$, that is, all technologies are
+a little inefficient. This is too guarantee that there's no way to
+combine two (or more) technologies and produce infinite goods.
+
+This economy is closed and therefore we must have a market clearing
+condition: the $N$ dimensional production scale vector $s$ has to be
+such that
+
+\begin{equation}
+x = x_0 + \sum_{i=1}^N s_i \xi_i
+\label{eq:market_clearing}
+\end{equation}
+ie, all the inputs the firms use have to come from the consumer's
+initial endowment. As with traditional General Equilibrium scenarios,
+the market clearing condition makes it so that solving the consumer
+maximum utility problem, $x^* = \argmax_x U(x)$, simultaneously solves
+the firms maximum profits problem,
+$s_i^* = \argmax_{s_i} s_i p_i \cdot \xi_i$, with the prices being set
+also by the first order condition of the consumer's maximization
+problem, $p_\mu = \frac{\partial U}{\partial x_\mu}$. In brief, market
+clearing makes so that the firms production and the market prices are
+set to satisfy consumer's desired demand, and no actor in the market
+has an incentive to deviate from this equilibrium.
+
+Market clearing also carries a strong restriction. If we multiply both
+sides of the equation \eqref{eq:market_clearing} by $p$, we get
+
+\begin{equation}
+  \label{eq:market_clearing_p}
+  p\cdot (x - x_0) = \sum_i s_i p \cdot \xi_i,
+\end{equation}
+
+The left side of the above equation has to always be smaller or equal
+to zero, because of the budget condition. But the right hand side has
+to be always greater or equal to zero, because this term represents
+the sum of the individual firms' profits and they can always choose
+$s_i = 0$ if a firm is losing money. Therefore, we must have that both
+sides are equal to zero, and the consequence is that the agent
+completely spends all his available budget (ie,
+$p\cdot x = p \cdot x_0$, he has not ``leftover'' cash after choosing
+$x$) and that the firms either have zero profit ($p\cdot \xi_i = 0$)
+or leave the market ($s_i = 0$).
+
+One of the important implications of equation
+\eqref{eq:market_clearing_p} is that we may not have more than $M$
+firms active at any given equilibrium realization. This is because
+$p\cdot \xi_i = 0$ is an equation on $p_\mu$ with $M$ variables, and
+if we have more than $M$ equations, this system has no solution.
+
+The model has some very interesting properties which are described at
+length in \cite{DeMartinoMarsili04}. In particular, it's possible to
+analytically calulate the distribution probabilities of $x$ and $s$
+(and therefore of $p$) and see that all macroscopic quantities derived
+from these two quantities depend on the number of firms per good
+$n = N/M$. The model displays a regime change at $n=2$, ie, two random
+technologies per good. When $n<2$, the market is competitive and the
+fraction of active firms $\phi = \sum_i \mathbb{I}(s_i > 0) / N$ is
+around $\phi = 0.5$. Because each firm has on average half the goods
+as inputs and half as outputs, when $n<2$ you don't have enough firms
+to span the whole $M$ dimensional space in order to be able to fine
+tune the quantities desired for all the goods.
+
+When $n>2$, however, there are many firms to choose from and
+statistically it's possible to choose $M$ linear independent firms
+that span the whole good space. In this regime, the market becomes
+monopolistic and $\phi$ assymptotically goes to zero with $n$, due to
+a saturation of active firms on $M$. 
+
+The change in the model economy's GDP also reflects the qualitative
+change in allocation. The authors define the gross product for the
+model as the total value of goods produced, that is, the sum of
+$(x_\mu - x_0^\mu)p_\mu$ for all goods $\mu$ that are produced, ie,
+$x_\mu > x_0^\mu$. However, the market clearing condition
+\eqref{eq:market_clearing_p} makes the value of goods produced equal
+to the value of goods used as input, so we calculate the GDP $Y$ by
+averaging over the absolute value of all trades:
+
+\begin{equation}
+  \label{eq:5}
+  Y = \frac{\sum_{\mu = 1}^M |x_\mu - x_0^\mu|p_\mu}{2 \sum_{\mu = 0}^M p_\mu},
+\end{equation}
+where the denominator also includes a normalization for the prices.
+
+What is shown in \cite{DeMartinoMarsili04} is that in the competitive
+regime when $n<2$, a new firm will have a significant positive effect
+on $Y$, while in the monopolistic regime $n>2$ a new firm will have
+negligible impact on the gross product. We will revisit this result
+later in this paper.
+
+The Random Linear Economies model is particularly suitable for further
+analysis because it's a General Equilibrium setting with few
+ingredients, but the introduction of stochastic elements offers a
+nontrivial phase transition which is not observed in similar
+``simple'' economic models in the literature.
