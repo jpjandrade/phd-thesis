@@ -1,6 +1,8 @@
 In this chapter we will discuss some of the economic theories behind
 the work of the thesis. Mainly, we will introduce General Equilibrium
-Theory and some of its main theorems.
+Theory and some of its main results and statements. We will then
+discuss how it relates to Statistical Physics and some of its
+criticism in the Economics literature.
 
 General Equilibrium Theory is a mature and consolidated field of
 Economics \cite{Arrow54, mascolell, mckenzie} which aims to
@@ -17,10 +19,20 @@ states in a rigorous manner. In this sense, it's also a theory in
 Microeconomic, because it explains macrobehavior from the incentives
 of microscopic agents.
 
-The exposition in this chapter is mostly adapted from \cite{mascolell}
-and will be considerably more formal than the rest of this
-thesis. This is due to the way the discipline is commonly studied, as
-is in itself an interesting fact which we will discuss 
+While the work in this thesis does not aim to strictly expand
+economies as they are describe in General Equilibrium Theory, it's
+purposes and questions are very similar to the ones physicists usually
+go for when studying an economic system: namely, the characterization
+of it's equilibrium state. It's important, therefore, to have a
+deeper understanding of how it's done in economics, what are the main
+concerns and assumptions.
+
+\section{A Brief Exposition}
+
+The exposition in this chapter is mostly adapted and simplified from
+\cite{mascolell} and will be considerably more formal than the rest of
+this thesis. This is due to the way the discipline is commonly
+studied.
 
 In General Equilibrium Theory, an economy is defined through the
 following components: we assume $J$ consumers, $N$ firms and $M$
@@ -37,9 +49,9 @@ element $x_j \in X_j$ to a real number, representing how much the
 consumer values each bundle of his consumption set. This allows us to
 define define a preference relationship over the elements in $X_j$
 (ie, if the consumer prefers bundle $x$ to $x'$), which is
-\emph{complete}\footnote{For every $x, x' \in X_j$, either
+\textbf{complete}\footnote{For every $x, x' \in X_j$, either
   $U_j(x) \geq U_j(x')$ or $U_j(x) \leq U_j(x')$.} and
-\emph{transitive}\footnote{For every $x, y, z \in X_j$, if
+\textbf{transitive}\footnote{For every $x, y, z \in X_j$, if
   $U_j(x) \geq U_j(y)$ and $U_j(y) \geq U_j(z)$, then
   $U_j(x) \geq U_j(z)$.}, two standard requirements in Economics for
 rational behavior.
@@ -71,7 +83,7 @@ In General Equilibrium Theory, an economy is formally defined as the tuple
 \end{equation}
 
 One of the theory's assumptions is that the economy described is
-\emph{complete}, that is, every agent can exchange every good with no
+\textbf{complete}, that is, every agent can exchange every good with no
 transaction costs and complete information about the firm's
 technologies, other consumer's consumption, etc. Also, a good $\mu$
 contains all the possible information that a consumer would take into
@@ -81,7 +93,7 @@ umbrella on August 13th, 2016 in Sao Paulo with 50\% chance of rain''
 and ``an umbrella on December 12th, 2016 in Chicago with 90\% chance
 of rain''. 
 
-It's assumed that agents are \emph{price-takers}, that is, they are
+It's assumed that agents are \textbf{price-takers}, that is, they are
 unable to affect the market prices and therefore take them as a
 given. The prices of the goods are given by a $M-$dimensional vector
 $p = (p_1, \ldots, p_M)$, where each price is a strictly positive
@@ -113,9 +125,170 @@ their profits, that is:
   \max_{\xi_i \in \Xi_i} p \cdot \xi_i
 \end{equation}
 
+With these ingredients laid out, we define an \textbf{allocation} of the
+economy as a set of specific choices for consumption bundles and
+technologies, ie, an allocation $a$ of an economy $E$ is
 
+\begin{equation}
+  \label{eq:3}
+  a = (x_1, \ldots, x_J, \xi_1, \ldots, \xi_N), \, x_j \in X_j, \,
+  \xi_i \in \Xi_i
+\end{equation}
 
+The economy is closed, and therefore all that is produced must come
+from the initial endowments and be consumed by the consumers. We
+therefore say an allocation is \textbf{feasible} if it satisfies
+\textbf{market clearing} for all the goods:
 
+\begin{equation}
+  \label{eq:market_clearing}
+  \sum_{j=1}^J x^\mu_j = \sum_{j=1}^J \omega_j^\mu + \sum_{i=1}^N
+  \xi_i^\mu, \quad \forall \, \mu \in \{1,\ldots, M\}
+\end{equation}
+
+This is a strong condition which constraints many quantities in
+the economy. In particular, if we multiply both sides of the equation
+by $p^\mu$ and sum then in $\mu$ we get, in vector notation,
+
+\begin{equation}
+  \label{eq:price_market_clearing}
+  \sum_{j = 1}^J p \cdot (x_j - \omega_j) = \sum_{i=1}^N p\cdot \xi_i
+\end{equation}
+
+The left handside is the leftover money the consumers have after
+making their choice of consumption, also called the value of excess
+demand, whereas the right handside is the firms aggregate profit, also
+known as the value of excess suply. Because we assume that the
+consumer may not spend more than his budget, the value of each
+consumer's individual excess demand has to be non
+positive. Simultaneously, if we assume that the firms always have
+$\xi_i = 0$ in their production set, ie, we assume that they can
+always opt to not produce at all and leave the market, then the value
+of excess supply for each firm has to be non negative. Because they
+must be equal, we conclude that in an economy for which market
+clearing holds, the consumer spends all his available budget and the
+firms all have zero profit, a result known as \textbf{Walras' Law}.
+
+Given a set of possible feasible allocations $\{a_k\}$, we may wonder
+if there is any allocation we desire most over the other. This
+of course depends on the criteria we use to judge them: we may like
+allocations with less inequality, with the most aggregate utility,
+with the smallest minimum utility, etc. Economist opt to use one
+particular condition which is called \textbf{Pareto optmality}.
+
+Intuitively, a \textbf{Pareto optimal} (or \textbf{Pareto efficient}
+allocation is one that you can't make a consumer better without making
+another consumer worse off. The idea is that, a non Pareto optimal
+allocation has some waste in it: one could change the consumption
+bundles in order to increase some utilities and no other consumer
+would complain. Because firms have zero profit in feasible
+allocations, they wouldn't mind the change. 
+
+More formally, a feasible allocation $a = (x, \xi)$ is said to be
+\textbf{Pareto optimal} if there is no other allocation that
+\textbf{Pareto dominates} it, that is, no allocation $a' = (x', \xi')$
+such that $U(x_j') \geq U(x_j)$ for all $j$ and $U(x_j') > U(x_j)$ for
+at least one $j$.
+
+The Pareto optimality concept therefore defines a socially desireble
+outcome in a ``non-controversial'' way, by definition no agent in the
+economy would have a problem with policies or actions taken to make it
+more Pareto efficient. However, it says nothing about equality: an
+allocation in which one consumer has all the goods and no other
+consumer has any goods is Pareto optimal.
+
+We finally arrive to the concept of equilibrium in an economy. A
+\textbf{Walrasian equilibrium} (or competitive equilibrium or simply
+equilibrium) in an economy E is an allocation $(x^\ast, \xi^\ast)$ and a
+price vector $p$ such that
+
+\begin{enumerate}
+\item Every firm $i$ maximizes it's profits in its production set
+  $\Xi_i$, that is
+  \begin{equation}
+    \label{eq:4}
+    p\cdot \xi_i^\ast \geq p\cdot \xi_i, \quad \forall \xi_i \in
+    \Xi_i,\quad \forall i in \{1, \ldots, N\} 
+  \end{equation}
+\item Every consumer $j$ maximizes his utility in his consumption set
+  $X_j$, that is
+  \begin{equation}
+    \label{eq:1}
+    U(x_j^\ast) \geq U(x_j), \quad \forall x_j \in X_j, \quad \forall
+    j \in \{1,\ldots, J\}
+  \end{equation}
+\item The allocation $(x^\ast, \xi^\ast)$ is feasible, that is,
+  \begin{equation}
+    \label{eq:2}
+    \sum_{i=j}^J x_j^\ast = \sum_{j=1}^J \omega_j + \sum_{i=1}^N \xi_i^\ast
+  \end{equation}
+\end{enumerate}
+
+The Walrasian equilibrium is essentially a pair allocation - prices in
+each all the optimization problems are solved at once. Although we
+have made no mention of dynamics in this economy, it's considered an
+equilibrium because all agents are as satisfied as possible with their
+allocation given the prices, which we have assumed to be global and
+unchangeable by any agent's action. This is not exactly a definition
+of equilibrium as used in Physics, but we will discuss this point
+later. For now, we point out that a Walrasian equilibrium is in some
+sense stable.
+
+One 
+
+We have thus defined two desirable properties of an allocation:
+efficiency and equilibrium. The fundamental results of General
+Equilibrium Theory are the \textbf{welfare theorems}, which define the
+conditions in which an equilibrium is Pareto optimal and vice versa.
+
+The \textbf{First Fundamental Welfare Theorem} asserts that if the consumers have
+a utility function continuous on $X_j$\footnote{The actual theorem
+  asserts a weaker condition, that the preferences be locally
+  nonsatiated, that is, for every $x \in X$, there is an $x' \in X$
+  such that $\|x - x'\| < \varepsilon$ and $x'$ is preferred to $x$.},
+then all Walrasian equilibria are Pareto optimal. This result is
+simple yet useful, because it tells us that if our economy is in
+equilibrium, we don't have to care about checking if it's
+efficient. The violation is also important: if a given economy we are
+studying is in an inefficient equilibrium, then it must be that one of
+the theorem's condition was violated. This sheds light in where to
+look for market failures. We remind the reader, however, that some
+extra strong assumptions were made for the economies described by this
+therorem, namely, completeness of market and global prices that
+no single agent is capable of influencing.
+
+The \textbf{Second Fundamental Welfare Theorem} requires extra
+assumptions: it afirms that if an economy satisfies the condition of
+the first fundamental theorem, the utility functions $U_j$ plus all
+sets $X_j$ and $Y_i$ are convex and if we are able to redistribute the
+initial endowments at will while keeping the total amount
+$\sum_{j=1}^J \omega_j$ constant, then for every Pareto efficient
+allocation there exists a wealth allocation $\omega$ and price vector
+$p^\ast$ such that $(x^\ast, \xi^\ast, p^\ast)$ is a Walrasian
+equilibrium.
+
+The second theorem is considerably more interesting than the first
+one: any Pareto optimal allocation we would like in an economy can be
+an equilibrium given the appropriate price vector and a possible
+wealth transfer, albeit under a stronger set of conditions.
+
+\section{The Dynamics of General Equilibrium}
+
+A conspicuous element was missing from the exposition above: there are
+no rules for the dynamics of the economies described above. The prices
+are taken as a given, as are the consumer and firm choices. What
+happens if a firm closes? What happens if a new firm appears? The
+equilibrium simply ``recalculates'' and we move to the new one?
+
+Indeed, this is a long standing criticism of General Equilibrium
+Theory. Walras proposed it as a process of
+\textbf{tatônnement}\footnote{From ``trial and error'' in french}: a
+central figure, known as the Walrasian auctioneer, sugests a price and
+asks all the firms and consumers how much would they like to produce
+and buy at these given prices, but without any transaction taking
+place at the out of equilibrium prices. The auctioneer updates the
+prices in the direction of diminishing excess demand or supply, a
+``gradient descent'' of sorts, until equilibrium is reached.
 
 
 

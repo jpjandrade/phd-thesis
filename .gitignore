@@ -1,10 +1,11 @@
 .gitignore~
 .#main.tex
 *.aux
+*.rel
 main.bbl
 main.blg
 main.lof
-main.log
+*.log
 main.lot
 main.out
 main.synctex.gz
