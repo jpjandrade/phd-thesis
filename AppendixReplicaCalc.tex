@@ -1,0 +1,562 @@
+In this chapter we carry out the calculation for the partition function described in section \ref{sec:rle_statmech} and originally presented in \cite{DeMartinoMarsili04} in details. Although the analitical form for the maximization will not be used in the Applications part of this PhD thesis, we believe it's instructive to the reader that is not familiar with the replica trick 
+
+  Nesta seção iremos detalhar o cálculo da função de partição do
+  modelo de Economias Lineares via método de réplicas, que foi
+  mencionado no texto. Esta seção serve dois propósitos: uma descrição
+  detalhada e didática da conta original feita pelos autores em
+  \cite{DeMartinoMarsili04}, que acreditamos ser de grande utilidade
+  para leitores que desejam acompanhar os detalhes do artigo, e a
+  continuação desta conta para $\beta$ arbitrário e no caso de
+  desordem \emph{annealed}, ambas extensões feitas como parte da
+  pesquisa deste Doutorado.
+
+  A função de partição é dada por
+
+  \begin{equation}
+    \label{eq:appZ}
+    Z(\beta | \xi, x_0) = \int_0^\infty ds \int_0^\infty dx e^{\beta U(x)} \delta\left(x - x_0 - \sum_i s_i \xi_i \right)
+  \end{equation}
+
+  Desejamos calcular o valor esperado de $u = \langle U(x) \rangle$ no
+  equilíbrio. Este valor médio é feito sobre três grandezas
+  aleatórias, a desordem fixa $\xi, x_0$ e a variável dinâmica $x$.
+
+  \begin{equation}
+    \label{eq:20}
+    u = \int d\xi dx_0 P(x_0, \xi) \int_0^\infty U(x) p(x) dx
+  \end{equation}
+
+  Onde $P(x_0, \xi)$ é a distribuição de probabilidade conjunta da desordem. Escrevemos
+  assim por simplicidade, mas lembramos que ela é uma distribuição de
+  duas variáveis independentes, e vale que
+
+  \begin{equation}
+    \label{eq:24}
+    \Prob(x_0 = y) = e^{-y}
+  \end{equation}
+
+  e
+
+  \begin{equation}
+    \label{eq:25}
+    \Prob(\xi_i) = \frac{1}{P_\xi} \prod_{c=1}^M \frac{1}{\sqrt{2\pi \Delta^2}}e^{-\frac{(\xi_i^c)^2}{2\Delta^2}}
+    \delta\left(\sum_{c=1}^M \xi_i^c + \epsilon\right),
+  \end{equation}
+
+onde $P_\xi$ é a normalização, dada por:
+
+\begin{equation}
+  \label{eq:26}
+  P_{\xi_i} = \int_0^\infty \prod_{c=1}^M d\xi_i^c \frac{1}{\sqrt{2\pi M^{-1}\Delta}}e^{-\frac{(\xi_i^c)^2}{2 M^{-1}\Delta}}
+    \delta\left(\sum_{c=1}^M \xi_i^c + \epsilon\right)
+\end{equation}
+
+Para calcular esta integral, devemos usar uma identidade que será
+muito útil durante toda a conta. A transformada de Fourier de uma
+função $\delta$ de Dirac é dada por
+
+\begin{equation}
+  \label{eq:27}
+  \delta(x) = \frac{1}{2\pi} \int_{-\infty}^\infty dk e^{i k x}
+\end{equation}
+
+Usando essa identidade podemos calcular a normalização $P_\xi$:
+
+\begin{align}
+  \label{eq:26}
+  P_{\xi_i} & = \int_0^\infty \prod_{c=1}^M d\xi_i^c
+  \frac{1}{\sqrt{2\pi M^{-1}\Delta}}e^{-\frac{(\xi_i^c)^2}{2 M^{-1}\Delta}}
+  \int_{-\infty}^\infty dk \frac{1}{2\pi} e^{i k (\sum_c \xi_i^c + \epsilon)} =
+  \\ & \int_{-\infty}^\infty dk \frac{1}{2\pi} e^{ik\epsilon} \prod_{c=1}^M
+  \int_0^\infty d\xi_i^c \frac{1}{\sqrt{2\pi
+      M^{-1}\Delta}}e^{-\frac{(\xi_i^c)^2}{2 M^{-1}\Delta} + i k \xi_i^c}
+\end{align}
+
+Para resolver a integral gaussiana, usamos outra identidade comum que
+vale a pena ser mencionada. Podemos completar os quadrados de qualquer
+integral em $e^{-a x^2 + bx}$ da forma:
+
+\begin{equation}
+  \label{eq:28}
+  \int_{-\infty}^\infty dx e^{-ax^2 + bx} = \sqrt{\frac{\pi}{a}} e^{\frac{b^2}{4a}}
+\end{equation}
+
+Esta identidade é muito útil não só para integrar termos como os do
+lado esquerdo, mas também para linearizar termos como os do lado
+direito.
+
+Usando esta identidade em \eqref{eq:26} temos:
+
+\begin{equation}
+  \label{eq:29}
+  P_{\xi_i} = \int_{-\infty}^\infty dk \frac{1}{2\pi} e^{ik\epsilon} 
+  e^{-M\frac{M^{-1}\Delta k^2}{2}} = \frac{1}{\sqrt{2\pi\Delta}} e^{-\frac{\epsilon^2}{2\Delta}}
+\end{equation}
+
+
+Voltando ao cálculo de $u$, podemos escrever a integral em $dx$ como
+
+  \begin{equation}
+    \label{eq:21}
+    \int_0^\infty U(x) \frac{e^{\beta U(x)}}{Z} dx = \frac{\del}{\del \beta} \log Z
+  \end{equation}
+
+  e temos a nova média sobre a desordem dada por
+
+  \begin{equation}
+    \label{eq:20}
+    u = \int d\xi dx_0 \Prob(x_0, \xi) \log Z
+  \end{equation}
+
+
+  O nosso problema de calcular $u$ se reduz a calcular $\log
+  Z$. Porém, isto não se mostra uma tarefa fácil, especialmente porque
+  a média sobre a desordem deve ser feita depois de calcular a função
+  de partição. Para tornar o problema tratáveis, utilizamos o método
+  de réplicas \cite{NishimoriBook}, que consiste em escrever $\log Z$
+  como
+
+  \begin{equation}
+    \label{eq:11}
+    \log Z = \lim_{r\to 0} \frac{Z^r - 1}{r}
+  \end{equation}
+  
+  E podemos calcular $Z^r$ ao invés de $\log Z$. A técniza utilizada
+  para calcular $Z^r$ é tratar $r$ como um número inteiro arbitrário e
+  escrever o produto como $Z^r = Z_1 Z_2 \ldots Z_r$, onde cada $Z_a$
+  é dito uma \emph{réplica} do sistema, com variáveis dinâmicas $x^a$
+  e $s^a$ (que ainda são vetores!) independentes. Assim, escrevemos:
+
+  \begin{equation}
+    \label{eq:23}
+    Z^r = \int_0^\infty ds^1 \int_0^\infty dx^1 e^{\beta U(x^1)}
+    \delta\left(x^1 - x_0 - \sum_i s^1_i \xi_i \right) \ldots \int_0^\infty ds^r \int_0^\infty dx^r e^{\beta U(x^r)}
+    \delta\left(x^r - x_0 - \sum_i s^r_i \xi_i \right)
+  \end{equation}
+
+Acumulando todos esses termos obtém-se
+
+  \begin{equation}
+    \label{eq:22}
+    Z^r = \int_0^\infty \prod_{a=1}^r d x_a \int_0^\infty
+    \prod_{a=1}^r d s_a e^{\beta \sum_a U(x_a)} \prod_{a=1}^r
+    \prod_{c=1}^M \delta \left( x_c^a - x_0^c - \sum_{i=1}^N s_i^a \xi_i^c\right)
+  \end{equation}
+
+  Para retomar o estado atual do cálculo de $u$, estamos fazendo:
+
+  \begin{equation}
+    \label{eq:20}
+    u = \int d\xi dx_0 \Prob(x_0, \xi) \lim_{r\to 0} \frac{Z^r - 1}{r}
+  \end{equation}
+  
+  Aqui usa-se um artifício comum ao método de réplicas que é mudar a
+  ordem da integral sobre a desordem e do limite de $r\to 0$. Não há
+  demonstração rigorosa que isso pode ser feito, porém é a única forma
+  de resolver essas equações. A integral sobre $x_0$ será de pouca
+  importância e deixaremos para o final. A integral sobre $\xi$ deve
+  ser feita neste ponto por estar multiplicando outro termo de
+  integração ($s_i^a$). Fazemos então a integral $\int d\xi \Prob(\xi)
+  Z^r$:
+
+  \begin{align}
+    \label{eq:30}
+    \int d\xi \Prob(\xi)
+  Z^r = & \int_{-\infty}^\infty \prod_{c=1}^M \prod_{i=1}^N \frac{1}{P_{\xi_i}} d\xi_i^c \frac{1}{\sqrt{2\pi M^{-1}\Delta}}e^{-\frac{(\xi_i^c)^2}{2 M^{-1}\Delta}}
+    \delta\left(\sum_{c=1}^M \xi_i^c + \epsilon\right) \times \\ &
+    \times \int_0^\infty \prod_{a=1}^r d x_a \int_0^\infty
+    \prod_{a=1}^r d s_a e^{\beta \sum_a U(x_a)} \prod_{a=1}^r
+    \prod_{c=1}^M \delta \left( x_c^a - x_0^c - \sum_{i=1}^N s_i^a
+      \xi_i^c\right) \nonumber
+  \end{align}
+
+Novamente usaremos a transformada de Fourier de $\delta$. Usaremos as
+identidades:
+
+\begin{equation}
+  \label{eq:31}
+  \delta\left(\sum_{c=1}^M \xi_i^c + \epsilon\right) =
+  \int_{-\infty}^\infty \frac{1}{2\pi} d\hat{z}_i e^{i \hat{z}_i \left(\sum_{c=1}^M \xi_i^c + \epsilon\right)}
+\end{equation}
+
+\begin{equation}
+  \label{eq:32}
+  \delta \left(x_c^a - x_0^c - \sum_{i=1}^N s_i^a \xi_i^c\right) = \int_{-\infty}^\infty \frac{1}{2\pi} d\hat{x}_c^a e^{i \hat{x}_c^a \left(x_c^a - x_0^c - \sum_{i=1}^N s_i^a \xi_i^c\right)}
+\end{equation}
+
+Escrevendo apenas os termos com $\xi_i^c$ na \eqref{eq:30} e fazendo a
+integral sobre $d\xi_i^c$ temos, para cada par $i,c$,
+
+\begin{equation}
+  \label{eq:34}
+  \int_{-\infty}^\infty d\xi_i^c \frac{1}{\sqrt{2\pi
+      M^{-1}\Delta}}e^{-\frac{(\xi_i^c)^2}{2 M^{-1}\Delta}} e^{i
+    \hat{z}_i \xi_i^c} e^{-\sum_a i \hat{x}_c^a s_i^a \xi_i^c} =
+  e^{-\frac{\Delta}{2M} \left(\hat{z}_i - \sum_a \hat{x}_c^a s_i^a\right)^2}
+\end{equation}
+
+Onde novamente foi usada a técnica de completar quadrados na integral
+gaussiana. Observe que o termo de normalização é cancelado.
+
+Inserindo o produto $\prod_{i,c} e^{-\frac{\Delta}{2M} \left(\hat{z}_i
+    - \sum_a \hat{x}_c^a s_i^a\right)^2}$ de volta na equação
+\eqref{eq:30} temos:
+
+\begin{align}
+  \label{eq:33}
+  & \int_{-\infty}^\infty \prod_{i=1}^N 
+  \frac{1}{2\pi} d\hat{z}_i \int_{-\infty}^\infty \prod_{a=1}^r
+  \frac{1}{2\pi} \prod_{c=1}^M d\hat{x}_c^a \int_0^{\infty} d x^a
+  \int_0^\infty ds^a \frac{1}{\left[\frac{1}{\sqrt{2\pi\Delta}}
+      e^{-\frac{\epsilon^2}{2\Delta}}\right]^N}  \times \\ 
+  & \times \exp\left[\beta \sum_a U(x_a) + i\epsilon\sum_{i=1}^N \hat{z}_i + i\sum_{a=1}^r \sum_{c=1}^M
+    \hat{x}_c^a \left(x_c^a - x_0^c\right) -
+    \frac{\Delta}{2M}\sum_{i=1}^N \sum_{c=1}^M\left(\hat{z}_i -
+      \sum_{a=1}^r \hat{x}_c^a s_i^a \right)^2\right]
+\end{align}
+
+Vamos fazer agora uma mudança de variáveis bastante comum neste tipo
+de conta, para que se possa desacoplar as integrais nas diferentes
+variáveis. Introduzimos:
+
+\begin{equation}
+  \label{eq:36}
+  \omega_{ab} = \frac{1}{N} \sum_{i=1}^N s_i^a s_i^b \quad \text{e}
+  \quad k_a = \frac{1}{N} \sum_{i=1}^N \hat{z}_i s_i^a
+\end{equation}
+
+Para fazer as substituições dessas variáveis, usa-se outra técnica
+comum, que é multiplicar a equação \eqref{eq:33} por 1, o que não
+altera o resultado, mas escrever a unidade como
+
+\begin{equation}
+  \label{eq:k}
+  1 = \int dk_{a} \delta\left(k_a -
+    \frac{1}{N}\sum_{i=1}^N s_i^a\right) = \int dk_a
+  d\hat{k}_a \frac{N}{2\pi i} e^{\hat{k}_{a} [N k_a - \sum_i
+      s_i^a]}  
+\end{equation}
+
+Este é a mesma identidade de escrever a transformada de Fourier como a
+sua transformada, com duas pequenas mudanças: primeiro, utiliza-se a
+identidade $\delta(x) = \alpha \delta(\alpha x)$ para se escrever
+$\delta(k_a - \frac{1}{N} \sum_i s_i^a) = N \delta(N k_a - \sum_i
+s_i^a)$. Isso é bastante útil pois os dois termos são de ordem $N$, e
+isso será relevante adiante. A segunda mudança é que na transformada
+foi feita a mudança de variáveis $\hat{k}_a \to i\hat{k}_a$. No caso
+de $\omega_{ab}$, utiliza-se a mesma identidade, com o cuidado de que
+é feito $\hat{\omega}_{ab} \to \frac{i}{2} \omega_{ab}$:
+
+\begin{equation}
+  \label{eq:37}
+  1 = \int d\omega_{ab} \delta\left(\omega_{ab} -
+    \sum_{i=1}^N s_i^a s_i^b\right) = \int d\omega_{ab}
+  d\hat{\omega}_{ab} \frac{N}{4\pi i} e^{\frac{1}{2}\hat{\omega}_{ab} [N \omega_{ab} - \sum_i
+      s_i^a s_i^b]}
+\end{equation}
+
+Por simplicidade, serão omitidos agora os limites de integração quando
+a integral for $\int_{-\infty}^\infty$. Substituindo as novas
+variáveis em \eqref{eq:33}:
+
+\begin{align}
+  \label{eq:33}
+ Z^r  & =  \int d\omega_{ab}
+  d\hat{\omega}_{ab} \frac{N}{4\pi i} e^{N \hat{\omega}_{ab}
+    \omega_{ab}} e^{ - \hat{\omega}_{ab}\sum_i
+      s_i^a s_i^b} \int dk_{a}
+  d\hat{k}_{a} \frac{N}{2\pi i} e^{N \hat{k}_{a}
+    k_{a}} e^{ - \hat{k}_{a}\sum_i
+      s_i^a} \times \nonumber \\ 
+    &\times \int \prod_{i=1}^N 
+  \frac{1}{2\pi} d\hat{z}_i \int \prod_{a=1}^r
+  \frac{1}{2\pi} \prod_{c=1}^M d\hat{x}_c^a \int_0^{\infty} d x^a
+  \int_0^\infty ds^a \frac{1}{\left[\frac{1}{\sqrt{2\pi\Delta}}
+      e^{-\frac{\epsilon^2}{2\Delta}}\right]^N}  \times \\ 
+  & \times e^{\left[\beta \sum_a U(x_a) + i\epsilon\sum_{i=1}^N \hat{z}_i + i\sum_{a=1}^r \sum_{c=1}^M
+    \hat{x}_c^a \left(x_c^a - x_0^c\right) -
+    \frac{\Delta}{2M} \sum_{c=1}^M \left(\sum_i \hat{z}_i - 2N\sum_a
+      k_a \hat{x}^a_c + N \sum_{a,b} \omega_{ab}\hat{x}_c^a
+      \hat{x}_c^b\right)\right]} \nonumber
+\end{align}
+
+A vantagem desta troca de variáveis é que as somas sobre $i$
+fatorizam-se totalmente e podemos substituir $\sum_i s_i^a$ por $N
+s^a$. Podemos colocar um termo $N$ em evidência para todos os termos e
+escrever a integral sobre $\omega, \hat{\omega}, k$ e $\hat{k}$ como
+
+\begin{equation}
+  \label{eq:38}
+  \int Z^r d\xi = \int\prod_{a,b=1}^r N
+  \frac{d\omega_{ab} d\hat{\omega}_{ab}}{4\pi i} \int \prod_{a=1}^r N
+  \frac{dk_{a} d\hat{k}_{a}}{2\pi i} e^{N h(\omega, \hat{\omega}, k, \hat{k})}
+\end{equation}
+
+Para uma certa função $h$. A razão de se fazer isso é porque no limite
+termodinâmico de $N\to \infty$ o valor da integral é dominado pelo seu
+valor máximo e podemos escrever
+
+\begin{equation}
+  \label{eq:39}
+  \int d\omega \, d\hat{\omega}\, dk \, d\hat{k} e^{N h(\omega, \hat{\omega},
+    k, \hat{k})} = \max_{\omega, \hat{\omega}, k, \hat{k}} e^{N h(\omega, \hat{\omega},
+    k, \hat{k})}
+\end{equation}
+
+Este método de integração é conhecido como método de ponto de sela e é
+uma das estratégias básicas utilizadas ao se fazer este tipo de conta
+de réplica devido ao limite termodinâmico. A função $h$ no momento
+pode ser dividida em três termos, $h = g_1 + g_2 + g_3$, onde
+
+\begin{equation}
+  \label{eq:40}
+  g_1 = -\sum_{a,b=1}^r  \frac{1}{2} \hat{\omega}_{ab} \omega_{ab} - \sum_{a=1}^r
+  \hat{k}_a k_a 
+\end{equation}
+
+\begin{equation}
+  \label{eq:41}
+  g_2 = \log \int \frac{d\hat{z}}{2\pi} \int_0^\infty \prod_{a=1}^r
+  \exp \left[ \frac{1}{2} \sum_{a,b} \hat{\omega}_{ab} s_a s_b +
+    \hat{z} \sum_{a=1}^r \hat{k}_a s_a + i\epsilon \hat{z} -
+    \frac{\Delta}{2} \hat{z}^2\right] - \log \frac{1}{\sqrt{2\pi\Delta}}
+      e^{-\frac{\epsilon^2}{2\Delta}}
+\end{equation}
+
+\begin{equation}
+  \label{eq:42}
+  g_3 = \frac{1}{N} \sum_c \log \int \prod_a \frac{d\hat{x}_a}{2\pi}
+  \int_0^\infty \prod_a dx^a e^{\beta \sum_a U(x^a) + i \sum_a
+    \hat{x}^a(x^a-x_0^c) - \frac{n\Delta}{2} \sum_{a,b} \hat{x}^a
+    \hat{x}^b \omega_{ab} + n\Delta \sum_a \hat{x}^a k_a }
+\end{equation}
+
+
+Para encontrar o valor máximo de $h$, devemos resolver o sistema de
+equações
+
+\begin{align}
+  \label{eq:43}
+  \frac{\del h}{\del \omega_{ab}}& = 0, \quad \quad \frac{\del h}{\del
+    \hat{\omega}_{ab}} = 0 \nonumber \\     \frac{\del h}{\del
+    k_{a}}& = 0, \quad \quad  \frac{\del h}{\del \hat{k}_a}= 0 
+\end{align}
+
+Estas equações são as chamadas equações de ponto de sela do cálculo de
+réplicas. Embora o objetivo deste cálculo envolvido seja calcular o
+valor médio de $U(x)$ no equilíbrio, as equações de ponto de sela nos
+dão informações importantes sobre a relação de várias quantidades do
+sistema de interesse.
+
+Vamos fazer aqui uma aproximação bastante comum nestes cálculos. Os
+termos $\omega_{ab}$ se referem a um overlap entre duas réplicas
+diferentes, ou seja, dois sistemas similares (um é a réplica do outro)
+com variáveis dinâmicas que evoluem de forma independente. Sabemos,
+através dos argumentos de Teoria de Equilíbrio Geral, que o equilíbrio
+é bem definido e único. Portanto, qualquer par de réplicas $a,b$ terão
+o mesmo equilíbrio e podemos escrever $\omega_{ab}$ como apenas dois
+valores: $\Omega$, caso $a = b$, isto é, $\Omega$ é o segundo momento
+$\langle s^2 \rangle$ da variável $s$ de um sistema, e $\omega$ caso
+$a\neq b$, isto é, todas as réplicas possuem o mesmo overlap. Esta é a
+chamada aproximação de réplicas simétricas, que é uma aproximação
+exata neste caso pois sabemos que a economia possui um único
+equilíbrio. Neste trabalho de Doutorado serão exploradas diversas
+alterações que podem fazer com que a Economia não possua mais um
+equilíbrio único, isso deve ser levado em conta ao fazer a aproximação
+de réplicas simétricas. 
+
+Escrevendo os parâmetros de ordem de forma explicita utilizando o
+$\delta$ de Kronecker, serão supostas as seguintes identidades:
+
+\begin{align}
+  \label{eq:44}
+  \omega_{ab} & = \Omega \delta_{ab} + \omega (1 - \delta_{ab})
+  \nonumber \\
+  \hat{\omega}_{ab} & = \hat{\Omega} \delta_{ab} + \hat{\omega}
+  (1-\delta_{ab}) \nonumber \\
+  k_a & = k \\
+  \hat{k}_a & = \hat{k} \nonumber
+\end{align}
+
+Substituindo estas identidades nas equações \eqref{eq:40} -
+\eqref{eq:42} e tomando o limite de $r\to 0$ temos:
+
+\begin{equation}
+  \label{eq:46}
+  \lim_{r\to 0} \frac{1}{r} g_1 = -\frac{1}{2}\left(\Omega\hat{\Omega}
+    - \omega \hat{\omega}\right) - k\hat{k}
+\end{equation}
+
+\begin{equation}
+  \label{eq:47}
+  \lim_{r\to 0} \frac{1}{r} g_2 = \int dt \frac{1}{\sqrt{2\pi}}
+  e^{-\frac{t^2}{2}} \log \int_0^\infty ds \, e^{\frac{\hat{\Omega} -
+      \hat{\omega}}{2} s^2 + \left[t\left(\frac{\hat{k}^2}{\Delta} +
+      \hat{\omega}\right)^{\frac{1}{2}} +
+    i\hat{k}\frac{\epsilon}{\Delta}\right] s}
+\end{equation}
+
+\begin{equation}
+  \label{eq:47}
+  \lim_{r\to 0} \frac{1}{r} g_3 = \int dt \frac{1}{\sqrt{2\pi}}
+  e^{-\frac{t^2}{2}} \log \int_0^\infty dx \, e^{\beta U(x) -
+    \frac{\left(x-x_0 + \sqrt{n\Delta \omega} t - i n \Delta
+        k\right)^2}{2n\Delta(\Omega - \omega)} - \frac{1}{2} \log[2\pi
+    n \Delta(\Omega - \omega)]}
+\end{equation}
+
+Nas equações acima, $t$ é uma variável aleatória gaussiana de média
+zero e variância unitária. Ela aparece através do uso da identidade
+\eqref{eq:28} nos termos com $\left(\sum_a s^a\right)^2$.
+
+Possuímos agora um vetor de parâmetros de ordem $\Theta = (\Omega,
+\hat{\Omega}, \omega, \hat{\omega}, k, \hat{k})$ e desejamos maximizar
+$h$ em função deste vetor, com alguns desejos sobre a solução. Em
+particular, ela deve ser bem definida para $\beta \to
+\infty$. Novamente pelo equilíbrio ser único, no limite de temperatura
+zero todas as réplicas devem atingir o mesmo limite e a distância
+entre as réplicas deve ser zero. Devemos ter portanto que
+
+\begin{equation}
+  \lim_{\beta\to \infty} \Omega - \omega = \frac{1}{2N} \sum_{i=1}^N \left(s_i^a - s_i^b \right)^2 = 0
+\end{equation}
+
+Mas isso implica em certas divergências em $g_2$. Da mesma forma, caso
+$\beta \to infty$, desejamos fazer integrações de ponto de sela da
+forma $\int_0^\infty dx e^{\beta V}$, e isso implicaria em
+divergências de certos termos em $V$. Precisamos fazer mudanças de
+escala para que os parâmetros de ordem permaneçam finitos. Por isso
+usamos as seguintes mudanças de escala
+
+\begin{align}
+  \label{eq:anzats}
+  \chi = n \Delta \beta (\Omega - \omega), \quad \hat{\chi} = -\frac{\hat{\Omega} - \hat{\omega}}{\beta}, \quad \kappa = -in\Delta k, \\
+  \hat{\kappa} = \frac{i\hat{k}}{\Delta \beta}, \quad \hat{\gamma} = \frac{\hat{\omega}}{\beta^2}
+\end{align}
+
+A função $h$ se torna
+
+\begin{align}
+  \label{eq:h}
+  h &= \frac{1}{2} \left(\Omega \hat{\chi} - \frac{\hat{\gamma}
+      \chi}{n \Delta} \right) - \frac{1}{n} \kappa \hat{\kappa} +
+  \frac{1}{\beta} \left\langle \log \int_0^\infty ds \,
+  e^{\beta \left[-\frac{\hat{\chi}}{2}s^2 + (t \sqrt{\hat{\gamma} - \Delta
+      \hat{\kappa}^2} + \hat{\kappa}\epsilon) s\right]}
+\right\rangle_t + \nonumber \\ &+
+\frac{1}{n\beta}\left\langle \log \int_0^\infty dx \, e^{\beta \left[ U(x) - \frac{(x - x_0 + \kappa +
+      \sqrt{n\Delta\Omega}t)^2}{2\chi}\right]} \right\rangle_{t,x_0}
+\end{align}
+
+Neste ponto o tratamento a temperaturas finitas diverge do original,
+em temperatura zero. No limite $\beta \to \infty$, estas integrais
+podem novamente ser resolvidas via integração de ponto de sela e a
+expressão final para $h$ é dada por
+
+\begin{align}
+  \label{eq:48}
+  h(\beta \to \infty)& = \left\langle \max_s \left[-\frac{\hat{\chi}}{2}s^2 + (t \sqrt{\hat{\gamma} - \Delta
+      \hat{\kappa}^2} + \hat{\kappa}\epsilon) s\right] \right\rangle_t +
+  \frac{1}{2} \left(\Omega \hat{\chi} - \frac{\hat{\gamma}
+      \chi}{n\Delta}\right) - \frac{1}{n} \kappa \hat{\kappa} + \nonumber\\ &+
+  \frac{1}{n} \left\langle \max_x \left[U(x) - \frac{(x - x_0 + \kappa +
+      \sqrt{n\Delta\Omega}t)^2}{2\chi}\right] \right\rangle_{t,x_o}
+\end{align}
+
+Substituindo na equação \eqref{eq:48} $x$ e $s$ pelas soluções $x^*$ e
+$s^*$ que maximização as expressões correspondentes, temos as
+seguintes equações de ponto de sela:
+
+\begin{align}
+  \frac{\del h}{\del \Omega} & = \frac{\hat{\chi}}{2} -
+  \frac{1}{2\chi} \sqrt{\frac{\Delta}{n\Omega}}\left\langle (x^* - x_0
+  + \kappa + t \sqrt{n\Delta\Omega})t\right \rangle_{t,x_0} = 0   \label{eq:omega}\\
+  \frac{\del h}{\del \kappa} & = -\frac{1}{n}\hat{\kappa} -
+  \frac{1}{n\chi}\left\langle x^* - x_0 + \kappa +
+    t\sqrt{n\Delta\Omega} \right \rangle_{t,x_0} = 0  \label{eq:kappa} \\
+  \frac{\del h}{\del \hat{\kappa}} & = -\frac{\Delta\hat{\kappa}}{\sqrt{\hat{\gamma} - \Delta
+      \hat{\kappa}^2}} \left\langle t s^*\right\rangle_t + \epsilon
+  \left\langle s^*\right\rangle_t - \frac{\kappa}{n} = 0 \label{eq:hatkappa}\\
+  \frac{\del h}{\del \hat{\gamma}} & = \frac{1}{2\sqrt{\hat{\gamma} - \Delta
+      \hat{\kappa}^2}} \left\langle t s^*\right\rangle_t -
+  \frac{\chi}{2n\Delta} = 0\label{eq:gamma}\\
+  \frac{\del h}{\del \chi} & = - \frac{\hat{\gamma}}{2n\Delta} + \frac{\left\langle (x^* - x_0 + \kappa +
+    t\sqrt{n\Delta\Omega})^2 \right \rangle_{t,x_0}}{2n\chi^2} = 0\label{eq:chi}\\
+  \frac{\del h}{\del \hat{\chi}} & = -\frac{1}{2} \left\langle (s^*)^2
+  \right\rangle_t + \frac{1}{2} \Omega = 0\label{eq:hatchi}
+\end{align}
+
+Algumas simplificações podem ser feitas nestas equações. Devido ao
+limite $\beta \to \infty$ a equação para $h$ em \eqref{eq:48} possui
+dois problemas de maximização. Podemos identificar $x^*$ fazendo
+$\frac{\del}{\del x} \left[U(x) - \frac{(x - x_0 + \kappa +
+    \sqrt{n\Delta\Omega}t)^2}{2\chi}\right] = 0$, ficando com a
+seguinte equação implicita:
+
+\begin{equation}
+  \label{eq:55}
+  x^* = x : U'(x^*) = \frac{(x - x_0 + \kappa +
+      \sqrt{n\Delta\Omega}t)}{\chi}
+\end{equation}
+
+Podemos inserir isto nas equações de ponto de sela \eqref{eq:omega} a
+\eqref{eq:hatchi} para obter algumas identidades úteis. A equação
+\eqref{eq:kappa} fica, em $x = x^*$:
+
+\begin{equation}
+  \label{eq:56}
+  \hat{\kappa} = -\left \langle U'(x^*) \right \rangle_{t,x_0}
+\end{equation}
+
+O que nos permite identificar $\hat{\kappa} = -p$ devido a identidade
+para os preços obtidos no problema de otimização do consumidor, na
+equação \eqref{eq:6}. A \eqref{eq:hatchi} permite que imediatamente se
+identifique 
+
+\begin{equation}
+  \label{eq:57}
+\Omega = \left\langle (s^*)^2 \right\rangle_t
+\end{equation}
+
+Os parâmetros restantes devem ser encontrados através de álgebra
+básica. Com $\Omega$ e $p$ definidos, imediatamente sai que
+
+
+\begin{equation}
+  \label{eq:58}
+\hat{\chi} = \sqrt{\frac{\Delta}{n\Omega}} \left \langle U'(x^*) t
+\right \rangle_{t,x_0}
+\end{equation}
+
+ A \eqref{eq:chi} nos dá que 
+
+ \begin{equation}
+   \label{eq:59}
+\hat{\gamma} =
+\Delta \left \langle U'(x^*)^2 \right \rangle_{t,x_0}
+\end{equation}
+
+Com isso, podemos escrever a variância de $U'(x)$ como 
+
+\begin{equation}
+  \label{eq:60}
+\sigma = \sqrt{\hat{\gamma} - \Delta \hat{\kappa}^2} = \sqrt{\Delta
+    \left(\left \langle U'(x^*)^2 \right \rangle_{t,x_0} - \left
+        \langle U'(x^*) \right \rangle_{t,x_0}^2 \right)}
+\end{equation}
+
+
+Finalmente, temos pela
+  \eqref{eq:gamma} que
+
+  \begin{equation}
+    \label{eq:61}
+    \chi = \frac{n\Delta}{\sigma} \left \langle t s^* \right \rangle_t
+  \end{equation}
+
+e pela \eqref{eq:hatkappa}:
+
+\begin{equation}
+  \label{eq:62}
+  \kappa = p \chi + n\epsilon \left \langle s^* \right \rangle_t
+\end{equation}
