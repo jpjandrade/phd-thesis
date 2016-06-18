@@ -2,27 +2,27 @@
 \documentclass[
   % Replace twoside with oneside if you are printing your thesis on a single side
   % of the paper, or for viewing on screen.
-  %oneside,
-  twoside,
+  oneside,
+  %twoside,
   11pt, a4paper,
   footinclude=true,
   headinclude=true,
-  cleardoublepage=empty
+  cleardoublepage=empty,
 ]{scrbook}
-\usepackage[T1]{fontenc}
+% \usepackage[T1]{fontenc}
 \usepackage[linedheaders,parts,pdfspacing]{classicthesis}
-\usepackage{lmodern}
-\usepackage{amsmath}
-\usepackage{amsthm}
+% \usepackage{lmodern}
 \usepackage{acronym}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[annote,fixlanguage]{babelbib}
+\usepackage[footnotesize]{caption}
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage{mathtools}
 \usepackage{dsfont}
 \usepackage{mdwlist}
 \usepackage{mathrsfs}
@@ -30,12 +30,14 @@
 \usepackage{graphicx}
 \usepackage{eurosym}
 \usepackage{subfig}
+\usepackage[left=1.25in,right=1.25in]{geometry}
 \DeclareMathOperator{\sen}{sen}  \newcommand{\del}{\partial}
 \newcommand{\R}{\mathds{R}} \newcommand{\C}{\mathds{C}}
 \newcommand{\N}{\mathds{N}} \newcommand{\Q}{\mathds{Q}}
 \newcommand{\Z}{\mathds{Z}}
 \DeclareMathOperator*{\argmin}{arg\,min}\DeclareMathOperator*{\argmax}{arg\,max}
-
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
 \title{Statistical Mechanics of Economic Systems}
 \author{João Pedro Jericó}
@@ -81,14 +83,16 @@
 
 \chapter{When does inequality freeze an economy?}
 
+\include{Inequality}
+
 \chapter{Conclusion}
 
 \appendix
 
 \chapter{Calculation of the Partition Function for the Random Linear
-  Economy model} \label{sec:app_replica}
+  Economy model} \label{sec:appendix_replica}
 
-%\include{AppendixReplicaCalc}
+\include{AppendixReplicaCalc}
 
 \bibliography{bib}{}
 \bibliographystyle{plain}
