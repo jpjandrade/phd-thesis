@@ -7,7 +7,7 @@
   11pt, a4paper,
   footinclude=true,
   headinclude=true,
-  cleardoublepage=empty,
+  cleardoublepage=empty
 ]{scrbook}
 % \usepackage[T1]{fontenc}
 \usepackage[linedheaders,parts,pdfspacing]{classicthesis}
@@ -49,14 +49,12 @@
 \include{FrontBackMatter/abstract}
 \include{FrontBackMatter/dedication}
 \include{FrontBackMatter/acknowledgements}
-\include{FrontBackMatter/declaration}
 \include{FrontBackMatter/contents}
 
 
 \chapter{Introduction}
 
-
-\section{Main results}
+\input{Introduction}
 
 
 \part{Theory}
@@ -69,11 +67,12 @@
 
 \chapter{Economics and the General Equilibrium Theory}
 
-\include{GeneralEquilibriumTheory}
+\input{GeneralEquilibriumTheory}
 
 \chapter{The Random Linear Economy model}
+\label{cha:RLE}
 
-\include{RandomLinearEconomy}
+\input{RandomLinearEconomy}
 
 \part{Applications}
 
@@ -81,18 +80,25 @@
 
 \chapter{Input-Output of random economies and real world data}
 
-\chapter{When does inequality freeze an economy?}
+\input{InputOutput}
 
-\include{Inequality}
+\chapter{When does inequality freeze an economy?}
+\input{Inequality}
 
 \chapter{Conclusion}
 
 \appendix
 
 \chapter{Calculation of the Partition Function for the Random Linear
-  Economy model} \label{sec:appendix_replica}
+  Economy model} 
+\label{sec:appendix_replica}
 
-\include{AppendixReplicaCalc}
+\input{AppendixReplicaCalc}
+
+\chapter{Definitions}
+\label{app:stat}
+
+\input{AppendixStatisticalMeasures}
 
 \bibliography{bib}{}
 \bibliographystyle{plain}

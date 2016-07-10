@@ -1,0 +1,89 @@
+\section{Spearman Rank}
+
+\section{Kolmogorov-Smirnov distance}
+
+One of the methods used to compare a sample of points to a given
+distribution (or, alternatively, to another sample) is via the
+Kolmogorov-Smirnov distance. Given the empirical cumulative distribution 
+
+\begin{equation}
+F_d (x) = \frac{1}{N} \sum_{i=1}^N \Theta(x - x_i),
+\end{equation}
+where $\Theta(x)$ is the Heaviside function, and a theoretical
+cumulative distribution $F(x)$, the KS distance is the maximum
+distance between these two distributions, that is,
+
+\begin{equation}
+  \label{eq:9}
+  D_d = \sup_x |F(x) - F_d(x)|.
+\end{equation}
+
+The best measure for a model selection trial using the
+Kolmogorov-Smirnov distance, however, is not the distance itself but
+its associated p-value. Given a random sample drawn from $F(x)$, what
+is the probability that this sample will have a KS distance equal to
+$D_d$. Given the Kolmogorov (cumulative) distribution
+
+\begin{equation}
+  \label{eq:1}
+  P(K < x) = 1 - 2 \sum_{k=1}^\infty (-1)^{k-1}e^{-2k^2 x^2},
+\end{equation}
+
+Finally, the p-value, which is used in the main text, is the probability that the scaled distance
+$D_d \sqrt{M}$ is equal or above this value, ie
+$p = P(K > D_d\sqrt{M}) = 1 - P(K< D_d \sqrt{M})$.
+
+\section{Bayesian Information Criterion (BIC)}
+
+In the theory of bayesian model selection, when deciding between two
+models $H_1$ and $H_2$, with parameters $\theta_1$ and $\theta_2$
+respectively, that explain the data $x$ one should compare their
+posterior probabilities:
+
+\begin{equation}
+  \label{eq:5}
+  p(H_i | x) = \frac{p(x | H_i) p(H_i)}{p(x)}.
+\end{equation}
+
+The equality is just Bayes theorem. The likelihood $p(x | H_i)$ is
+given by the integral over all the parameters, i.e.,
+
+\begin{equation}
+  \label{eq:7}
+  p(x | H_i) = \int d\theta_i p(x | \theta_i) p(\theta_i | H_i),
+\end{equation}
+where $p(x | \theta)$ is the likelihood of the data given a specific
+choice of parameters $\theta$ and $p(\theta | H_i)$ is the prior
+probability on the parameters given the model.
+
+If we have no prior information on which model is more likely, then we
+use $p(H) = 1/2$. The dependency on $p(x)$ can be eliminated by
+calculating the so called \emph{Bayes factor}:
+
+\begin{equation}
+  \label{eq:bayes_factor}
+  K = \frac{p(x | H_1)}{p(x | H_2)} = \frac{\int d\theta_1 p(x | \theta_1) p(\theta_1 | H_1)}{\int d\theta_2 p(x | \theta_2) p(\theta_2 | H_2)}
+\end{equation}
+
+A bayes factor $K>1$ means that $H_1$ is more likely to be the model
+that generated the data, likewise $K<1$ means $H_2$ is more
+likely. How much more likely depends, of course, on the magnitude of
+the ratio.
+
+In the case of real unbounded variables, however, defining the prior
+$p(\theta | H)$ is not trivial. One work around to this problem is to
+assume uniform prior but do a saddle point approximation on the integrals
+of equation \ref{eq:bayes_factor} \cite{BishopBook}. One then gets the
+so called Bayesian Information Criterion score:
+
+\begin{equation}
+  \label{eq:BIC}
+  \text{BIC} = -2\log p(x | \theta^{*}) + k \log(M),
+\end{equation}
+where $\theta^*$ are the values that maximize $p(x|\theta)$ (ie, the
+maximum likelihood parameters) and $k$ is the dimensionality of this
+vector (i.e., number of parameters). This is essentially a maximum
+likehood which is penalized by the number of parameters. The model
+with lowest BIC is the one that should be preferred, and the magnitude
+of the difference tells us how strongly should we prefer one over
+another \cite{Kass95}.
