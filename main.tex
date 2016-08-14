@@ -35,7 +35,7 @@
 \newcommand{\R}{\mathds{R}} \newcommand{\C}{\mathds{C}}
 \newcommand{\N}{\mathds{N}} \newcommand{\Q}{\mathds{Q}}
 \newcommand{\Z}{\mathds{Z}}
-\DeclareMathOperator*{\argmin}{arg\,min}\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}\DeclareMathOperator*{\argmax}{arg\,max} \DeclareMathOperator\erfc{erfc}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
@@ -59,15 +59,13 @@
 
 \part{Theory}
 
-
-\chapter{Statistical Mechanics and Inference}
-
-\section{A Section}
-% \lipsum[1] % This is just some filler text. Remove before you start writing
-
 \chapter{Economics and the General Equilibrium Theory}
 
 \input{GeneralEquilibriumTheory}
+
+\chapter{Statistical Mechanics and Inference}
+\label{cha:stat_mech}
+\input{StatisticalMechanics}
 
 \chapter{The Random Linear Economy model}
 \label{cha:RLE}
@@ -77,8 +75,10 @@
 \part{Applications}
 
 \chapter{Inefficient Consumer in a General Equilibrium Setting}
+\label{cha:inefficient}
 
 \chapter{Input-Output of random economies and real world data}
+\label{cha:IO}
 
 \input{InputOutput}
 

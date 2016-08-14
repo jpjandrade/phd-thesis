@@ -72,10 +72,7 @@ maximization problem
 In most of the analysis done in this thesis we will treat the
 particular case of the consumer's separable utility function as
 $u(x_\mu) = \log x_\mu$, although any concave function would work
-exhibit similar qualitative behavior. The logarithm is a common choice
-for the consumer's utility function because it satisfies some of the
-usual properties desired for the consumer behavior in economics:
-first, the consumer is \textbf{loss averse}, which means that he will
+exhibit similar qualitative behavior. The logarithm is a common choice for the consumer's utility function because it satisfies some of the usual properties desired for the consumer behavior in economics: first, the consumer is \textbf{loss averse}, which means that he will
 always prefer a guaranteed amount $a$ of any good to a lottery in
 which he can win $a + \delta$ with probability 0.5 and $a - \delta$
 with probability 0.5, for any $\delta > 0$. He is loss averse because
@@ -84,10 +81,10 @@ $\delta$. In our case, we don't have lotteries, but the principle
 holds for two goods: if he has $\bar{x} + \delta$ of good $\mu$ and
 $\bar{x} + \delta$ of good $\nu$, he will try to find a company that
 trades this excess of good $\nu$ so he can average both goods and in
-fact, may even do so at a loss (ie, he ends up with
+fact, may even do so at a loss (i.e., he ends up with
 $\bar{x} - \varepsilon$ for both goods, for some
 $\varepsilon < \delta$). Also, with the separable utility as chosen,
-there are not complementary or substitute goods, ie, goods for which
+there are not complementary or substitute goods, i.e., goods for which
 the consumer prefers to have more (or less) of one if he has
 another. Finally, because $u(0) = -\infty$, the consumer will always
 try to obtain a little bit of every good, even if at a great cost,
@@ -146,7 +143,12 @@ x = x_0 + \sum_{i=1}^N s_i \xi_i
 \label{eq:market_clearing}
 \end{equation}
 ie, all the inputs the firms use have to come from the consumer's
-initial endowment. 
+initial endowment. If we sum over all the goods we have a strict condition on the final conversions from $x_0$ to $x$:
+
+\begin{equation}
+\label{eq:mc_eff}
+  \sum_{\mu = 1}^M x_\mu - x_0^\mu = -\epsilon \sum_{i=1}^N s_i
+\end{equation}
 
 Because market clearing hold and agents are price takers, we can also
 derive the strong restriction on profits discussed before. If we
@@ -188,8 +190,8 @@ $p_\mu > 0$ for all $\mu$), it must be that $\phi N \leq M$, which
 implies that
 
 \begin{equation}
-  \label{eq:4}
-  \phi leq \frac{1}{n}
+  \label{eq:phi_max}
+  \phi \leq \frac{1}{n}
 \end{equation}
 
 Having a single representative consumer (or
@@ -304,7 +306,7 @@ where $\theta = (\Omega, \kappa,
   the calculation and $h$ is given by:
 
 \begin{align}
-  \label{eq:53}
+  \label{eq:h}
   h(\Omega, \kappa, p, \sigma, \chi, \hat{\chi})& = \left\langle
     \max_s \left[-\frac{\hat{\chi}}{2}s^2 + (t \sigma - \epsilon p)
                                                   s\right]
@@ -317,51 +319,142 @@ where $\theta = (\Omega, \kappa,
 \end{align}
 where $t$ is a normal random variable with zero mean and unitary variance.
 
+The zero temperature limit makes the terms over $s$ and $x$ revert to the two original optimization problems of the firms and consumer, respectively. However, the extra terms couple those two maximization issues. Because we are in the thermodynamic limit where $M, N \to \infty$, the maximization solution is a distribution over the $N$ productions scales and $M$ good quantities. The solution for $s^*$ is obtained by solving  $\frac{\del}{\del s}
+\left[-\frac{\hat{\chi}}{2}s^2 + (t \sigma - \epsilon p) s\right] =
+0$. Keeping in mind the constraint that $s\geq 0$, we have
 
-\section{Results}
+\begin{equation}
+  \label{eq:s_ast}
+  s^*(t) =
+  \begin{cases}
+    (t\sigma - \epsilon p), & \text{if } t \geq \frac{\epsilon
+      p}{\sigma} \\
+    0, & \text{otherwise.}
+  \end{cases}
+\end{equation}
 
-The model has some very interesting properties which are described at
-length in \cite{DeMartinoMarsili04}. In particular, it's possible to
-analytically calulate the distribution probabilities of $x$ and $s$
-(and therefore of $p$) and see that all macroscopic quantities derived
-from these two quantities depend on the number of firms per good
-$n = N/M$. The model displays a regime change at $n=2$, ie, two random
-technologies per good. When $n<2$, the market is competitive and the
-fraction of active firms $\phi = \sum_i \mathbb{I}(s_i > 0) / N$ is
-around $\phi = 0.5$. Because each firm has on average half the goods
-as inputs and half as outputs, when $n<2$ you don't have enough firms
-to span the whole $M$ dimensional space in order to be able to fine
-tune the quantities desired for all the goods.
+The probability distribution of $s$ has a mass on $s=0$, which has probability equal to the case where $t < \epsilon p / \sigma$, and a gaussian probability distribution for $t \geq \epsilon p /
+\sigma$. We are able to calculate it explicitely by integrating on $t$:
 
-When $n>2$, however, there are many firms to choose from and
-statistically it's possible to choose $M$ linear independent firms
-that span the whole good space. In this regime, the market becomes
-monopolistic and $\phi$ assymptotically goes to zero with $n$, due to
-a saturation of active firms on $M$. 
+\begin{equation}
+  \label{eq:64}
+  P(s) = \int_{-\infty}^\infty dt \frac{1}{2\pi}
+  e^{-\frac{t^2}{2}} \delta (s - s^*)
+\end{equation}
 
-The change in the model economy's GDP also reflects the qualitative
-change in allocation. The authors define the gross product for the
+We use the identity that for the Dirac delta function $\delta(x - a) = |f'(a)|\delta(f(x))$ for any function $f(x)$ with a simple root in $a$. Choosing $f(s) = \frac{s\hat{\chi} + \epsilon p}{\sigma} - t$ we have
+
+\begin{equation}
+  \label{eq:63}
+  P(s) = (1 - \phi) \delta(s) + \Theta(s) \frac{\hat{\chi}}{\sqrt{2\pi}
+    \sigma} e^{-\frac{(\hat{\chi}s + \epsilon p)^2}{2\sigma^2}},
+\end{equation}
+where $\phi = \frac{1}{2} \erfc\left(\frac{\epsilon p}{\sqrt{2} \sigma}\right)$ is the fraction of active firms ($s > 0$) in the economy.
+    
+In the same manner, the solution of the consumer's maximization problem on $x$ is given by the implicit equation obtained when solving $\frac{\del}{\del x} \left[U(x) - \frac{(x - x_0 + \kappa + \sqrt{n\Delta\Omega}t)^2}{2\chi}\right]$:
+
+  \begin{equation}
+    \label{eq:x_ast}
+    x^* = x : : U'(x^*) = \frac{(x - x_0 + \kappa +
+      \sqrt{n\Delta\Omega}t)}{\chi}
+  \end{equation}
+
+Using $f(x) = \frac{x - x_0 - \chi u'(x) + \kappa}{\sqrt{n \Delta \Omega}} + t$ for the same replacement as in \eqref{eq:63} we have
+
+\begin{equation}
+  \label{eq:66}
+  P(x) = \frac{1 - \chi U''(x)}{\sqrt{2\pi n \Delta \Omega}} e^{-
+    \frac{(x - x_0 - \chi U'(x) + \kappa)^2}{2n\Delta \Omega}}
+\end{equation}
+
+To find the maximum value of $h$ given the order parameters $\Omega, \kappa,
+  \sigma, \chi, \hat{\chi}$, we must again take the derivative in respect to each of these parameters. These give us the so called \textbf{saddle point equations} which, despite being used to find the maximum of $h$ and therefore the expected value of the utility in a large system, also give us insights into the behavior of quantities of interest such as the good prices. The saddle point equations for equation \eqref{eq:h} are (see Appendix \ref{app:rep} for details):
+
+\begin{align}
+  p & = \left \langle U'(x^*) \right \rangle_{t,x_0} \label{eq:saddlep} \\
+\Omega & = \left\langle (s^*)^2 \right\rangle_t \label{eq:saddleomega}\\
+\sigma & = \sqrt{\Delta
+    \left(\left \langle U'(x^*)^2 \right \rangle_{t,x_0} - \left
+        \langle U'(x^*) \right \rangle_{t,x_0}^2 \right)} \label{eq:saddlesigma}\\
+    \chi & = \frac{n\Delta}{\sigma} \left \langle t s^* \right
+    \rangle_t \label{eq:saddlechi}\\
+\hat{\chi} & = \sqrt{\frac{\Delta}{n\Omega}} \left \langle U'(x^*) t
+\right \rangle_{t,x_0} \label{eq:saddlehatchi}\\
+  \kappa & = p \chi + n\epsilon \left \langle s^* \right \rangle_t \label{eq:saddlekappa}
+\end{align}
+
+The equations above allow for some sanity checking: if we take the expected value of equation \eqref{eq:x_ast} with respect to $t$ and $x_0$ we have
+
+\begin{equation}
+  \langle \chi U'(x^\ast) \rangle_{t, x_0} = \langle x \rangle_{t, x_0} - \langle x_0 \rangle_{x_0} + \kappa + \langle \sqrt{n\Delta\Omega}t \rangle_{t, x_0}
+\end{equation}
+
+But the last term is the average of $t$ which is zero, and if we replace $\kappa = p \chi + n\epsilon \left \langle s^* \right \rangle_t$ and $\langle \chi U'(x^\ast) \rangle_{t, x_0}$ by $\chi p$ we have
+
+\begin{equation}
+    \langle x \rangle_{t, x_0} =  \langle x_0 \rangle_{x_0} - n\epsilon  \left \langle s^* \right \rangle_t,
+\end{equation}
+which is the thermodynamic limit version of equation \ref{eq:mc_eff}. 
+
+
+\section{Regime change at $n=2$}
+
+One of the most interesting aspects of this seemingly simple model it that it exhibits two very different economic behaviors, one when $n<2$ and the other when $n>2$: when $n < 2$, the economy is competitive, half of the firms in the market are active and operation but are not efficient enough that the consumer is completely satisfied, so new firms entering improve the consumer's utility and the economy's GDP. When $n > 2$, the market is saturated, monopolistic (most firms are inactive) and new firms entering have a negligible impact on the economy.
+
+This behavior has a simple geometric explanation which can be shown without the results generated above. If we write the initial endowments as $x_0 = \bar{x}_0 + \delta x_0$, such that $\bar{x}_0$ is the average (which has an expected value of one) and $\sum_\mu \delta x_0^\mu = 0$, then the consumer picks $s$\footnote{Remember that market clearing couples the consumer's maximization problem with the firms'} as to minimize the dispersion vector $\delta x_0$ as much as possible. Therefore, firms that have $\xi_i \cdot \delta x_0 < 0$ will have a positive production scale, whereas firms that have $\xi_i \cdot \delta x_0 > 0$ will increase the dispersion of the initial goods, reducing the consumer's utility and therefore won't get used, having $s_i = 0$.
+
+At the $\epsilon \to 0$ limit, each component $\xi_i^\mu$ is drawn from a normal distribution with zero mean, so the plane $\xi_i \delta x_0 = 0$ divides the set of firms in half, because each firm has equal probability of having its independent (when $\epsilon = 0$) technologies drawn in such a way that $\xi_i \cdot \delta x_0 < 0$, no matter what vector is $\delta x_0$ as long as it's not zero. This means at most $N/2$ are active at any given moment. However, we know from equation \eqref{eq:phi_max} that there can be at most $M$ firms active in the economy. Therefore, in the limit of $\epsilon \to 0$, we must have $\phi = 1/2$ up until $N/2 = M$, which implies a transition at $n = 2$.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.65\textwidth]{figs_rle/s_pos.png}
+  \caption{Fraction of active firms $\phi$ as a function of $n$, for $\epsilon = 0.005$ and $M=100$. At around $n=2$, the number of active firms collapses.}
+  \label{fig:spos}
+\end{figure}
+
+
+To further characterize this transition, we show the results of numerical simulations for the fraction of active firms $\phi$ as a function of $n$, for $\epsilon = 0.01$ in Figure \ref{fig:spos}. We see that indeed there is a collapse in the fraction of firms active when $n = 2$, as predicted, when the number of active firms has reached its maximum and new firms either are immediately out of the market or replace old ones entirely, whereas when $n < 2$ new firms enter the market and with probability half operate among the incumbent ones. This effect can be seen even further on figure \ref{fig:s_x_avg}, where we plot the average production of scale $\langle s \rangle$ for active firms, the spread reduction $\xi \cdot \delta x_0$ and $\langle x \rangle$ as a function of $n$. The interesting result is that when $n<2$, each new technology actually increases the average scale of production for all other firms, because it offers a new conversion possibility all firms can take advantage of. In the other hand, in the monopolistic regime, each new firm decreases the average scale of production because at the threshold, new firms only offer increasingly more specialized conversion rates that suit best the consumer's demand. However, the reduction in spread $\xi \cdot \delta x_0$ decreases roughly at the same rate, indicating that beyond $n=2$, new firms are simply replacing older, less efficient ones.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figs_rle/s_avg.png}
+  \includegraphics[width=0.3\textwidth]{figs_rle/spread_reduction.png}
+  \includegraphics[width=0.3\textwidth]{figs_rle/x_avg.png}
+  \caption{\textbf{(Left)} Average scale of production $s$ \textbf{(Middle)} Reduction in spread $\xi \cdot \delta x_0$ \textbf{(Right)} Average final bundle $\langle x \rangle$, all as a function of the technological density $n = \frac{N}{M}$. The plots show the regime change at $n=2$: when $n < 2$, in the competitive regime, each firm increases their production when a new technology enters the market, whereas the consumer is willing to sacrifice a bit more of his total amount of goods to increase his utility. At $n>2$, the monopolistic regime, the consumer doesn't sacrifice any more of his total amount of goods, and new firms are more efficient and decrease the average scale of all others. These results are from numerical simulations averaged over 1500 replicas, with $M=100$ and $\epsilon = 0.005$.}
+  \label{fig:s_x_avg}
+\end{figure}
+
+
+The graph for $\langle x \rangle$ in figure \ref{fig:s_x_avg} shows that the consumer too has a different behavior in the two regimes. In the competitive setting, firms are suboptimal and the consumer is able to maximize his utility by sacrificing an increasingly larger amount of his initial endowment. Only after $n=2$ the technologies are good enough that the consumer loses less when choosing an optimal bundle. In terms of utility, it increases rapidly with $n$ up until $n=2$ and it stalls a bit afterwards, showing the saturation of the economy, as shown in figure \ref{fig:u_GDP_avg}.
+
+We can also define the gross product (GDP) for the
 model as the total value of goods produced, that is, the sum of
-$(x_\mu - x_0^\mu)p_\mu$ for all goods $\mu$ that are produced, ie,
-$x_\mu > x_0^\mu$. However, the market clearing condition
+$(x_\mu - x_0^\mu)p_\mu$ for all goods $\mu$ that are produced, i.e.,
+$x_\mu > x_0^\mu$. Since market clearing condition
 \eqref{eq:market_clearing_p} makes the value of goods produced equal
-to the value of goods used as input, so we calculate the GDP $Y$ by
+to the value of goods used as input, we calculate the GDP $Y$ by
 averaging over the absolute value of all trades:
 
 \begin{equation}
-  \label{eq:5}
+  \label{eq:GDP}
   Y = \frac{\sum_{\mu = 1}^M |x_\mu - x_0^\mu|p_\mu}{2 \sum_{\mu = 0}^M p_\mu},
 \end{equation}
-where the denominator also includes a normalization for the prices.
+where the denominator also includes a normalization for the prices. The numerical results for the GDP are shown in figure \ref{fig:u_GDP_avg}, and, like the utility, increase linear with $n$ up until $n=2$, where it quickly stalls, another indicator that the economy enters a mature regime at this point. The utility and the GDP as a function of $n$ will be specially relevant in chapter $\ref{cha:inefficient}$, when we will relax the zero temperature constraint.
 
-What is shown in \cite{DeMartinoMarsili04} is that in the competitive
-regime when $n<2$, a new firm will have a significant positive effect
-on $Y$, while in the monopolistic regime $n>2$ a new firm will have
-negligible impact on the gross product. We will revisit this result
-later in this paper.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.4\textwidth]{figs_rle/gdp_avg.png}
+  \includegraphics[width=0.4\textwidth]{figs_rle/utility_avg.png}
+  \caption{\textbf{(Left)} Average GDP as defined by equation \eqref{eq:GDP} \textbf{(Right)} Average consumer utility per good, both as a function of the technological density $n$. Both increase rapidly as a function of new firms in the competitive regime $n < 2$ and saturate in the monopolistic regime $n >2$.}
+  \label{fig:u_GDP_avg}
+\end{figure}
+
 
 The Random Linear Economies model is particularly suitable for further
 analysis because it's a General Equilibrium setting with few
 ingredients, but the introduction of stochastic elements offers a
-nontrivial phase transition which is not observed in similar
-``simple'' economic models in the literature.
+nontrivial regime change which is not observed in similar
+``simple'' economic models in the literature and are not solvable through standard economic maximization methods, as discussed in Chapter \ref{cha:stat_mech}.
+
+For these reasons we used it as a basis for two of the applications presented in this thesis: in Chapter \ref{cha:inefficient} we will discuss how relaxing the $\beta \to \infty$ limit to arbitrary $\beta$ is a principled way of modeling an irrational consumer. On Chapter \ref{cha:IO} we will build Input - Output matrices for the model and compare to real world data.

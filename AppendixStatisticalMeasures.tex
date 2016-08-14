@@ -1,15 +1,37 @@
-\section{Spearman Rank}
+In this Appendix we briefly explain some of the statistical measures used throughout the thesis. While they can easily be found in other sources, we consider it useful for the reader to have them consolidated in a single source.
+
+\section{Spearman Rank Correlation}
+
+The \textbf{Spearman Rank Correlation} is a statistical measure of dependence between two random variables. Unlike the Pearson correlation, the most commonly employed metric for dependence between two variables, the Spearman rank is not a linear metric. Instead, it measures the monoticity between samples of two random variables, i.e., how much one can be described as a monotonic function of another. 
+
+More precisely, let $x = \{x_1, \ldots, x_N\}$ and $y = \{y_1, \ldots, y_N\}$ be two datasets, and $r(x_i)$ is the rank of $x_i$ in the order from lowest to highest (that is, $r(x_i) = 1$ for the smallest $x_i$ and $r(x_i) = N$ for the highest. Then the Spearman Rank Correlation is the Pearson correlation between the set of ranks $r(x) = \{r(x_1), \ldots, r(x_N)\}$ and $r(y) = \{r(y_1), \ldots, r(y_N)\}$, i.e.:
+
+\begin{equation}
+  r_s = \frac{\text{cov}(r(x), r(y))}{\sigma_{r(x)} \sigma_{r(y)}}
+\end{equation}
+
+If there are no ties in the ranks, i.e., if there is not two elements identical in both samples, then the Spearman rank correlation is given by
+
+\begin{equation}
+  r_s = 1 - \frac{6 \sum_i \left(r(x_i) - r(y_i)\right)^2}{n (n^2 - 1)}
+\end{equation}
+
+A Spearman correlation of 1 implies that for every pair $i, j$ in the datasets, $(x_i - x_j)(y_i - y_j) > 0$. Likewise, a Spearman correlation of -1 implies that $(x_i - x_j)(y_j - y_j) < 0$.
+
+One of the main advantages of Spearman rank correlation is its sensivity to outliers. If an element of $x$ is much larger than the rest of the set, in a linear measure like Pearson correlation it would distort the measure by a term proportional to its deviation from the mean. In the Spearman rank calculation, no matter how large the outlier, it is still only one rank above the second largest data point.
+
 
 \section{Kolmogorov-Smirnov distance}
 
-One of the methods used to compare a sample of points to a given
-distribution (or, alternatively, to another sample) is via the
-Kolmogorov-Smirnov distance. Given the empirical cumulative distribution 
+When facing a sample of points, one often would like to know how likely it is that these points where sampled from a specific probability distribution. Alternatively, one would like to know how likely it is that two different samples were drawn from the same distribution. One of the most popular methods employed in this task is the
+\textbf{Kolmogorov-Smirnov distance}. Given the empirical cumulative distribution of the dataset $x = \{x_1, \ldots, x_N\}$ is given by
 
 \begin{equation}
 F_d (x) = \frac{1}{N} \sum_{i=1}^N \Theta(x - x_i),
 \end{equation}
-where $\Theta(x)$ is the Heaviside function, and a theoretical
+where $\Theta(x)$ is the Heaviside function.
+
+If we want to compare it to a theoretical
 cumulative distribution $F(x)$, the KS distance is the maximum
 distance between these two distributions, that is,
 
@@ -18,25 +40,25 @@ distance between these two distributions, that is,
   D_d = \sup_x |F(x) - F_d(x)|.
 \end{equation}
 
-The best measure for a model selection trial using the
-Kolmogorov-Smirnov distance, however, is not the distance itself but
-its associated p-value. Given a random sample drawn from $F(x)$, what
-is the probability that this sample will have a KS distance equal to
-$D_d$. Given the Kolmogorov (cumulative) distribution
+The most relevant measure for a model selection trial using the
+Kolmogorov-Smirnov distance, however, is not the distance itself but its associated p-value. Given a random sample drawn from $F(x)$, the p-value is the probability that this sample will have a KS distance equal to $D_d$. It can be shown that the scaled distance $D_d \sqrt{N}$ has a cumulative distribution similar to the Kolmogorov distribuiton:
 
 \begin{equation}
   \label{eq:1}
   P(K < x) = 1 - 2 \sum_{k=1}^\infty (-1)^{k-1}e^{-2k^2 x^2},
 \end{equation}
 
-Finally, the p-value, which is used in the main text, is the probability that the scaled distance
-$D_d \sqrt{M}$ is equal or above this value, ie
-$p = P(K > D_d\sqrt{M}) = 1 - P(K< D_d \sqrt{M})$.
+Thefore $p$ is the probability that a scaled distance $D_d \sqrt(N)$ sampled from the Kolmogorov distribution has a value equalor above its measured empirical value, i.e.,
+
+\begin{equation}
+   p = P(K > D_d\sqrt{N}) = 1 - P(K< D_d \sqrt{N}) 
+\end{equation}
+
+Which is the probability used throught Chapter \ref{cha:IO}.
 
 \section{Bayesian Information Criterion (BIC)}
 
-In the theory of bayesian model selection, when deciding between two
-models $H_1$ and $H_2$, with parameters $\theta_1$ and $\theta_2$
+In the theory of bayesian model selection, when deciding between two models $H_1$ and $H_2$, with parameters $\theta_1$ and $\theta_2$
 respectively, that explain the data $x$ one should compare their
 posterior probabilities:
 
@@ -45,20 +67,18 @@ posterior probabilities:
   p(H_i | x) = \frac{p(x | H_i) p(H_i)}{p(x)}.
 \end{equation}
 
-The equality is just Bayes theorem. The likelihood $p(x | H_i)$ is
-given by the integral over all the parameters, i.e.,
+The equality above is just Bayes theorem. The likelihood $p(x | H_i)$ of observing the data given the hypothesis is
+calculating by integrating over all the hypothesis parameters, i.e.,
 
 \begin{equation}
   \label{eq:7}
   p(x | H_i) = \int d\theta_i p(x | \theta_i) p(\theta_i | H_i),
 \end{equation}
-where $p(x | \theta)$ is the likelihood of the data given a specific
-choice of parameters $\theta$ and $p(\theta | H_i)$ is the prior
+where $p(x | \theta)$ is the likelihood of the data given a specific choice of parameters $\theta$ and $p(\theta | H_i)$ is the prior
 probability on the parameters given the model.
 
-If we have no prior information on which model is more likely, then we
-use $p(H) = 1/2$. The dependency on $p(x)$ can be eliminated by
-calculating the so called \emph{Bayes factor}:
+If we have no prior information on which model is more likely, then we simply
+use $p(H) = 1/2$ as prior. The dependency on $p(x)$ can be eliminated by calculating the so called \emph{Bayes factor} instead of the posteriors:
 
 \begin{equation}
   \label{eq:bayes_factor}
@@ -73,14 +93,13 @@ the ratio.
 In the case of real unbounded variables, however, defining the prior
 $p(\theta | H)$ is not trivial. One work around to this problem is to
 assume uniform prior but do a saddle point approximation on the integrals
-of equation \ref{eq:bayes_factor} \cite{BishopBook}. One then gets the
-so called Bayesian Information Criterion score:
+of equation \ref{eq:bayes_factor} \cite{BishopBook}. One then gets the \textbf{Bayesian Information Criterion score}:
 
 \begin{equation}
   \label{eq:BIC}
   \text{BIC} = -2\log p(x | \theta^{*}) + k \log(M),
 \end{equation}
-where $\theta^*$ are the values that maximize $p(x|\theta)$ (ie, the
+where $\theta^*$ are the values that maximize $p(x|\theta)$ (i.e., the
 maximum likelihood parameters) and $k$ is the dimensionality of this
 vector (i.e., number of parameters). This is essentially a maximum
 likehood which is penalized by the number of parameters. The model
