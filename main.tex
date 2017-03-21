@@ -1,9 +1,9 @@
 % book example for classicthesis.sty
-\documentclass[
+\PassOptionsToPackage{hyphens}{url}\documentclass[
   % Replace twoside with oneside if you are printing your thesis on a single side
   % of the paper, or for viewing on screen.
-  oneside,
-  %twoside,
+  %oneside,
+  twoside,
   11pt, a4paper,
   footinclude=true,
   headinclude=true,
@@ -17,7 +17,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[annote,fixlanguage]{babelbib}
 \usepackage[footnotesize]{caption}
-\usepackage{url}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
@@ -39,17 +38,53 @@
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
-\title{Statistical Mechanics of Economic Systems}
-\author{João Pedro Jericó}
 
 \begin{document}
+\begin{titlepage}
+  \begin{center}
 
-\maketitle
+    \textsc{\Large Universidade de São Paulo} \\[0.1cm]
+    \textsc{\Large Instituto de Física} \\ [4cm]
+    
+{\Large \textbf{Mecânica Estatística de Sistemas Econômicos}} \\ [1cm]
 
-\include{FrontBackMatter/abstract}
-\include{FrontBackMatter/dedication}
+{\Large João Pedro Jericó} \\[3cm]
+  \end{center}
+
+
+  \begin{flushleft}
+  \hspace{9cm} Orientador: Renato Vicente \\ [1cm] 
+\hspace{8cm}    Tese de Doutorado apresentada ao \\ \hspace{8cm}  Instituto de
+Física para a
+    obtenção do \\ \hspace{8cm}  título de Doutor em Ciências
+  \end{flushleft}
+\vspace{1cm}
+
+\begin{flushleft}
+Banca examinadora:
+
+Prof. Dr. Renato Vicente (IME-USP) \\
+Prof. Dr. Nestor Felipe Caticha Alfonso (IF-USP) \\
+Prof. Dr. Fernando Tadeu Caldeira Brandt (IF-USP) \\ 
+Prof. Dr. André Cavalcanti Rocha Martins (EACH-USP) \\
+Prof. Dr. Masayuki Oka Hase (EACH-USP) \\
+\end{flushleft}
+
+\vfill
+
+\begin{center}
+  {\large São Paulo} \\
+{\large 2016}
+\end{center}
+\end{titlepage}
+
+
 \include{FrontBackMatter/acknowledgements}
+\include{FrontBackMatter/portuguese_abstract}
+\include{FrontBackMatter/english_abstract}
+% \include{FrontBackMatter/dedication}
 \include{FrontBackMatter/contents}
+
 
 
 \chapter{Introduction}
@@ -57,10 +92,9 @@
 \input{Introduction}
 
 
-\part{Theory}
 
 \chapter{Economics and the General Equilibrium Theory}
-
+\label{cha:GET}
 \input{GeneralEquilibriumTheory}
 
 \chapter{Statistical Mechanics and Inference}
@@ -72,26 +106,29 @@
 
 \input{RandomLinearEconomy}
 
-\part{Applications}
 
 \chapter{Inefficient Consumer in a General Equilibrium Setting}
 \label{cha:inefficient}
 
-\chapter{Input-Output of random economies and real world data}
+\input{Inefficient}
+
+\chapter{Input-Output of Random Economies and Real World Data}
 \label{cha:IO}
 
 \input{InputOutput}
 
-\chapter{When does inequality freeze an economy?}
+\chapter{When Does Inequality Freeze an Economy?}
+\label{cha:inequality}
 \input{Inequality}
 
 \chapter{Conclusion}
+\input{Conclusion}
 
 \appendix
 
 \chapter{Calculation of the Partition Function for the Random Linear
   Economy model} 
-\label{sec:appendix_replica}
+\label{app:rep}
 
 \input{AppendixReplicaCalc}
 

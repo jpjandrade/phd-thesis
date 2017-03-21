@@ -23,8 +23,8 @@ One of the main advantages of Spearman rank correlation is its sensivity to outl
 
 \section{Kolmogorov-Smirnov distance}
 
-When facing a sample of points, one often would like to know how likely it is that these points where sampled from a specific probability distribution. Alternatively, one would like to know how likely it is that two different samples were drawn from the same distribution. One of the most popular methods employed in this task is the
-\textbf{Kolmogorov-Smirnov distance}. Given the empirical cumulative distribution of the dataset $x = \{x_1, \ldots, x_N\}$ is given by
+When facing a sample of points, one often would like to know how likely it is that these points were sampled from a specific probability distribution. Alternatively, one would like to know how likely it is that two different samples were drawn from the same distribution. One of the most popular methods employed for this task is the
+\textbf{Kolmogorov-Smirnov distance}\cite{wasserman2013}. Given the empirical cumulative distribution of the dataset $x = \{x_1, \ldots, x_N\}$ given by
 
 \begin{equation}
 F_d (x) = \frac{1}{N} \sum_{i=1}^N \Theta(x - x_i),
@@ -36,42 +36,42 @@ cumulative distribution $F(x)$, the KS distance is the maximum
 distance between these two distributions, that is,
 
 \begin{equation}
-  \label{eq:9}
+  \label{eq:a2_9}
   D_d = \sup_x |F(x) - F_d(x)|.
 \end{equation}
 
-The most relevant measure for a model selection trial using the
+From the point of view of Classical Statistics, the most relevant measure for a model selection trial using the
 Kolmogorov-Smirnov distance, however, is not the distance itself but its associated p-value. Given a random sample drawn from $F(x)$, the p-value is the probability that this sample will have a KS distance equal to $D_d$. It can be shown that the scaled distance $D_d \sqrt{N}$ has a cumulative distribution similar to the Kolmogorov distribuiton:
 
 \begin{equation}
-  \label{eq:1}
+  \label{eq:a2_1}
   P(K < x) = 1 - 2 \sum_{k=1}^\infty (-1)^{k-1}e^{-2k^2 x^2},
 \end{equation}
 
-Thefore $p$ is the probability that a scaled distance $D_d \sqrt(N)$ sampled from the Kolmogorov distribution has a value equalor above its measured empirical value, i.e.,
+Thefore $p$ is the probability that a scaled distance $D_d \sqrt(N)$ sampled from the Kolmogorov distribution has a value equal or above its measured empirical value, i.e.,
 
 \begin{equation}
    p = P(K > D_d\sqrt{N}) = 1 - P(K< D_d \sqrt{N}) 
 \end{equation}
 
-Which is the probability used throught Chapter \ref{cha:IO}.
+Which is the probability used throughout Chapter \ref{cha:IO}.
 
 \section{Bayesian Information Criterion (BIC)}
 
-In the theory of bayesian model selection, when deciding between two models $H_1$ and $H_2$, with parameters $\theta_1$ and $\theta_2$
+In the theory of Bayesian model selection, when deciding between two models $H_1$ and $H_2$, with parameters $\theta_1$ and $\theta_2$
 respectively, that explain the data $x$ one should compare their
 posterior probabilities:
 
 \begin{equation}
-  \label{eq:5}
+  \label{eq:a2_5}
   p(H_i | x) = \frac{p(x | H_i) p(H_i)}{p(x)}.
 \end{equation}
 
-The equality above is just Bayes theorem. The likelihood $p(x | H_i)$ of observing the data given the hypothesis is
-calculating by integrating over all the hypothesis parameters, i.e.,
+The equality above is just Bayes theorem. The likelihood $p(x | H_i)$ of the data given the hypothesis is
+calculate by integrating over all hypothesis parameters, i.e.,
 
 \begin{equation}
-  \label{eq:7}
+  \label{eq:a2_7}
   p(x | H_i) = \int d\theta_i p(x | \theta_i) p(\theta_i | H_i),
 \end{equation}
 where $p(x | \theta)$ is the likelihood of the data given a specific choice of parameters $\theta$ and $p(\theta | H_i)$ is the prior
@@ -81,22 +81,22 @@ If we have no prior information on which model is more likely, then we simply
 use $p(H) = 1/2$ as prior. The dependency on $p(x)$ can be eliminated by calculating the so called \emph{Bayes factor} instead of the posteriors:
 
 \begin{equation}
-  \label{eq:bayes_factor}
+  \label{eq:a2_bayes_factor}
   K = \frac{p(x | H_1)}{p(x | H_2)} = \frac{\int d\theta_1 p(x | \theta_1) p(\theta_1 | H_1)}{\int d\theta_2 p(x | \theta_2) p(\theta_2 | H_2)}
 \end{equation}
 
-A bayes factor $K>1$ means that $H_1$ is more likely to be the model
+A Bayes factor $K>1$ means that $H_1$ is more likely to be the model
 that generated the data, likewise $K<1$ means $H_2$ is more
 likely. How much more likely depends, of course, on the magnitude of
 the ratio.
 
 In the case of real unbounded variables, however, defining the prior
-$p(\theta | H)$ is not trivial. One work around to this problem is to
+$p(\theta | H)$ is not trivial. One workaround to this problem is to
 assume uniform prior but do a saddle point approximation on the integrals
-of equation \ref{eq:bayes_factor} \cite{BishopBook}. One then gets the \textbf{Bayesian Information Criterion score}:
+of equation \eqref{eq:a2_bayes_factor} \cite{BishopBook}. One then gets the \textbf{Bayesian Information Criterion score}:
 
 \begin{equation}
-  \label{eq:BIC}
+  \label{eq:a2_BIC}
   \text{BIC} = -2\log p(x | \theta^{*}) + k \log(M),
 \end{equation}
 where $\theta^*$ are the values that maximize $p(x|\theta)$ (i.e., the

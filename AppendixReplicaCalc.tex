@@ -1,6 +1,6 @@
-In this chapter we carry out the calculation for the partition function described in section \ref{sec:rle_statmech} and originally presented in \cite{DeMartinoMarsili04} in details. Although the analytical form for the maximization will not be used in the Applications part of this PhD thesis, we believe it's instructive to the reader that is not familiar with the replica method. The level of detail employed here is not published anywhere, and thus we consider an additional contribution of this thesis.
+In this appendix we provide details of the calculation for the partition function described in section \ref{sec:rle_statmech} and originally presented in \cite{DeMartinoMarsili04}. Although the analytical form for the maximization will not be used in the problems addressed in this thesis, we believe it may be instructive to the reader that is not familiar with the replica method. The level of detail employed here is not published anywhere, and thus we consider it a pedagogical contribution of this thesis.
 
-To solve the maximization problem we need to calculate the following integrals (from equation \eqref{eq:a_14}):
+To solve the maximization problem we need to calculate the following integrals (from equation \eqref{eq:rle_14}):
 
 \begin{equation}
     \label{eq:a_app_main}
@@ -19,8 +19,7 @@ Carrying out the integration in equation \eqref{eq:a_app_main} is
 extremely hard, mainly because the log function in the integrand
 prevents us to factorize the integrals from the coupling created by
 $\xi_i^\mu$ and the market clearing condition. This is a recurrent
-problem when calculating the energy for disordered systems in
-statistical mechanics, which was solved by a clever and extremely
+problem when calculating free energies energy of disordered systems in Statistical Mechanics, which was solved by a clever and extremely
 useful technique to deal with the logarithm function, the so called
 \textbf{replica method} \cite{NishimoriBook}, which consists in
 writing $\log Z$ as:
@@ -34,18 +33,18 @@ The identity above is still exact, but the clever part of the method
 is exchanging the $\lim_{r\to 0}$ term with the rest of the
 integrals, treating $r$ like an integer throught the whole
 calculation: $Z^r$ is written as a product of independent partition
-functions, ie, $Z^r = Z_1 Z_2 \ldots Z_r$, each integrated over their
+functions, i.e., $Z^r = Z_1 Z_2 \ldots Z_r$, each integrated over their
 own dynamical variables $x^a$ and $s^a$, $a = 1, \ldots, r$. These
 multiple independent systems are the \emph{replicas} that give the
 method its name. This may seem strange at first, but the beauty of the
 replica method is that this change of operations (between the limit
-and the integrals), though not rigorously proved, works very well.
+and the integrals) works very well and has recently been proved to be correct \cite{talagrand2003}.
 
 The general strategy of the full calculation will be as follows: we
 exchange the order of integrations and limits until we have
 
 \begin{equation}
-    \label{eq:a_app_main}
+    \label{eq:a_app_main_2}
     \lim_{N\to\infty} \frac{1}{N}\max_x U(x) =
     \lim_{r\to\infty} \frac{1}{N}\lim_{\beta\to\infty} \int d\xi dx_0 P(\xi) P(x_0)
     \frac{Z(\beta | \xi, x_0)^r - 1}{r}
@@ -57,7 +56,7 @@ in the limit $N\to\infty$\footnote{The divergence actually comes from
   we assume $n = N/M$ fixed, scaling on $N$ is equivalent to scaling
   on $M$}. The term $\int d\xi dx_0 P(\xi) P(x_0)
 \frac{Z(\beta | \xi, x_0)^r - 1}{r}$ is the partition function
-average over the disorder. Because only $Z(\beta | \xi, x_0)$
+averaged over the disorder. Because only $Z(\beta | \xi, x_0)$
 depends on $\xi$ and $x_0$, we write it as
 
     \begin{equation}
@@ -78,7 +77,7 @@ calculating $\max U(x)$, but the goal is to write it in the form
 where $\theta$ is a vector of order parameters. Because we assume
 $N\to \infty$, the integral is dominated by it's maximal value, $\theta^\ast$. We
 then take the series expansion around $\theta^\ast$ and keep the first
-two terms, ie,
+two terms, i.e.,
 
 \begin{equation}
   \label{eq:a_4}
@@ -86,11 +85,11 @@ two terms, ie,
     h(\theta^\ast)} \approx 1 + \beta N r h(\theta^\ast)
 \end{equation}
 
-Finally, we plug this approximation into equation \eqref{eq:a_app_main}
+Finally, we plug this approximation into equation \eqref{eq:a_app_main_2}
 to get
 
 \begin{equation}
-    \label{eq:a_app_main}
+    \label{eq:a_app_main_3}
     \lim_{N\to\infty} \frac{1}{N}\max_x U(x) =
     h(\theta^\ast)
 \end{equation}
@@ -145,9 +144,9 @@ The integral over $x_0$ we can leave to the end because they are
 already factored and involve no other terms except the initial
 endowments. The integrals over $\xi_i^\mu$, however, are coupled due
 to the normalization term. Because the $\delta$ integral is not
-feasible due to the couplings, too calculate $P_{\xi_i}$, and throughout
+feasible due to the couplings, in order to calculate $P_{\xi_i}$, and throughout
 this appendix, we will make use of an important identity for the Dirac
-delta function, in which we replace it by it's Fourier transform, ie:
+delta function, in which we replace it by it's Fourier transform:
 
 \begin{equation}
   \label{eq:a_27}
@@ -166,7 +165,7 @@ With this identity we are able to integrate all the terms in the normalization t
       M^{-1}\Delta}}e^{-\frac{(\xi_i^\mu)^2}{2 M^{-1}\Delta} + i k \xi_i^\mu}
 \end{align}
 
-We also use another useful identity to solve the gaussian integral in $\xi_i^\mu$. The integral of $e^{-a x^2 + b x}$ can be easily done if we complete the square:
+We also use another useful identity to solve the Gaussian integral in $\xi_i^\mu$. The integral of $e^{-a x^2 + b x}$ can be easily done if we complete the square:
 
 \begin{equation}
   \label{eq:a_gaussian_integral}
@@ -254,7 +253,7 @@ $s_i^a$ and $s_i^b$ independently. To get around this, we introduce new variable
   \quad k_a = \frac{1}{N} \sum_{i=1}^N \hat{z}_i s_i^a
 \end{equation}
 
-To substitute these terms in the equation above, we multiply it again by a delta term and integrate over it, then replace by its Fourier transform, ie:
+To substitute these terms in the equation above, we multiply it again by a delta term and integrate over it, then replace by its Fourier transform:
 
 \begin{equation}
   \label{eq:a_k}
@@ -275,10 +274,10 @@ To substitute these terms in the equation above, we multiply it again by a delta
 
 A few extra steps were taken in the above passage: first, we used the identity $\delta(x) = \alpha \delta(\alpha x)$ to write $\delta(k_a - \frac{1}{N} \sum_i s_i^a) = N \delta(N k_a - \sum_i s_i^a)$. This change is useful because both terms are of order $N$ and this will allow us to write $\langle Z^r \rangle_{\xi, x_0}$ in the form of \eqref{eq:a_3}. The second step taken was to carry out a change of variable in the integration, $\hat{k}_a \to i\hat{k}_a$ and $\hat{\omega}_{ab} \to \frac{i}{2} \hat{\omega}_{ab}$.
 
-For simplicity, we will now omit the integration limits when the integral is $\int_{-\infty}^\infty$. Replacing the new variables in \eqref{a_33}:
+For simplicity, we will now omit the integration limits when the integral is $\int_{-\infty}^\infty$. Replacing the new variables in \eqref{eq:a_33}:
 
 \begin{align}
-  \label{eq:a_33}
+  \label{eq:a_33_new}
  \langle Z^r \rangle_{\xi, x_0} & =  \int d\omega_{ab}
   d\hat{\omega}_{ab} \frac{N}{4\pi i} e^{N \hat{\omega}_{ab}
     \omega_{ab}} e^{ - \hat{\omega}_{ab}\sum_i
@@ -340,11 +339,11 @@ To find the maximum of $h$ we must solve the following system of equations
     k_{a}}& = 0, \quad \quad  \frac{\del h}{\del \hat{k}_a}= 0 
 \end{align}
 
-These are the saddle points for the replica method. Although we are calculating the maximum value of $U(x)$, the saddle point equations give us important information on how the order parameters relate to each other.
+These are the saddle points for the replica method. Although we are actually calculating the maximum value of $U(x)$, the saddle point equations give us important information on how the order parameters relate to each other.
 
-At this point we take another important approximation to these calculations. The $r^2$ order parameters $\omega_{ab}$ are the overlap between two different system replicas, $a$ and $b$, ie, how similar are the $s$ vectors in two independent copies of our economy. Because $U(x)$ is a convex function, we know that the maximum of $U(x)$ exists and is unique. Therefore, we expect every replica to converge to the same equilibrium value of $s^a$ in the limit $\beta \to \infty$, and in this case, we cannot distinguish between $\omega_{ab}$ for any two pairs of replica $a$ and $b$. We assume, then, there are only two possible values for $\omega_{ab}$. Either $a = b$ and $\omega_{aa} = \langle s^2 \rangle = \Omega$, the variance of $s$, or $a \neq b$ and $\omega_{ab} = \omega$, the overlap of two different systems. This is the so called replica symmetric approximation, which is exact in this case because we know there is only one equilibrium in the zero temperature limit.
+At this point we take another important approximation to these calculations. The $r^2$ order parameters $\omega_{ab}$ are the overlap between two replicas of the system, $a$ and $b$, i.e., how similar are the $s$ vectors in two independent copies of our economy. Because $U(x)$ is a convex function, we know that the maximum of $U(x)$ exists and is unique. Therefore, we expect every replica to converge to the same equilibrium value of $s^a$ in the limit $\beta \to \infty$, and in this case, we cannot distinguish between $\omega_{ab}$ for any two pairs of replica $a$ and $b$. We assume, then, there are only two possible values for $\omega_{ab}$. Either $a = b$ and $\omega_{aa} = \langle s^2 \rangle = \Omega$, the variance of $s$, or $a \neq b$ and $\omega_{ab} = \omega$, the overlap of two different systems. This is the so called replica symmetric approximation, which is exact in this case because we know there is only one equilibrium in the zero temperature limit.
 
-Writing this explicitely, we have that $\omega_{ab}$ and $k_a$ are given by
+Writing this explicitly, we have that $\omega_{ab}$ and $k_a$ are given by
 
 \begin{align}
   \label{eq:a_44}
@@ -374,7 +373,7 @@ Replacing these new values in equations \eqref{eq:a_40} - \eqref{eq:a_42} and ta
 \end{equation}
 
 \begin{equation}
-  \label{eq:a_47}
+  \label{eq:a_47_2}
   \lim_{r\to 0} \frac{1}{r} g_3 = \int dt \frac{1}{\sqrt{2\pi}}
   e^{-\frac{t^2}{2}} \log \int_0^\infty dx \, e^{\beta U(x) -
     \frac{\left(x-x_0 + \sqrt{n\Delta \omega} t - i n \Delta
@@ -382,9 +381,9 @@ Replacing these new values in equations \eqref{eq:a_40} - \eqref{eq:a_42} and ta
     n \Delta(\Omega - \omega)]}
 \end{equation}
 
-In the equations above, $t$ is a gaussian random variable with zero mean and unit variance, which arises from using the identity \eqref{a_gaussian_integral} to linearize $\left(\sum_a s^a\right)^2$, gaining an integral in the process.
+In the equations above, $t$ is a Gaussian random variable with zero mean and unit variance, which arises from using the identity \eqref{eq:a_gaussian_integral} to factorize $\left(\sum_a s^a\right)^2$, gaining an integral in the process.
 
-We now have a order parameter vector $\theta = (\Omega, \hat{\Omega}, \omega, \hat{\omega}, k, \hat{k})$ and we wish to find the values $\theta^\ast$ that maximizes $h(\theta)$. However, we have some conditions on this solution, in particular we know that it must be well defined for $\beta \to \infty$. Again, because we know that in this limit all replicas must have the same equilibrium, then it must hold that the overlap between replicas must vanish, ie,
+We now have an order parameter vector $\theta = (\Omega, \hat{\Omega}, \omega, \hat{\omega}, k, \hat{k})$ and we wish to find the values $\theta^\ast$ that maximizes $h(\theta)$. However, we have some conditions on this solution, in particular we know that it must be well defined for $\beta \to \infty$. Again, because we know that in this limit all replicas must have the same equilibrium, then it must hold that the overlap between replicas must vanish, i.e.,
 
 \begin{equation}
   \lim_{\beta\to \infty} \Omega - \omega = \frac{1}{2N} \sum_{i=1}^N \left(s_i^a - s_i^b \right)^2 = 0
@@ -394,8 +393,8 @@ But this would imply that some terms in $g_3$ would diverge in the zero temperat
 
 \begin{align}
   \label{eq:a_anzats}
-  \chi = n \Delta \beta (\Omega - \omega), \quad \hat{\chi} = -\frac{\hat{\Omega} - \hat{\omega}}{\beta}, \quad \kappa = -in\Delta k, \\
-  \hat{\kappa} = \frac{i\hat{k}}{\Delta \beta}, \quad \hat{\gamma} = \frac{\hat{\omega}}{\beta^2}
+  \chi = n \beta \Delta  (\Omega - \omega), \quad \hat{\chi} = -\frac{\hat{\Omega} - \hat{\omega}}{\beta}, \quad \kappa = -in\Delta k, \\
+  \hat{\kappa} = \frac{i\hat{k}}{\beta \Delta}, \quad \hat{\gamma} = \frac{\hat{\omega}}{\beta^2}
 \end{align}
 
 The function $h$ then becomes
@@ -412,16 +411,16 @@ The function $h$ then becomes
       \sqrt{n\Delta\Omega}t)^2}{2\chi}\right]} \right\rangle_{t,x_0}
 \end{align}
 
-We then finally take the limit $\beta \to \infty$ and again use the saddle point method to solve the integrals on $x$ and $s$, which means they are dominated by their maximum value, ie 
+We then finally take the limit $\beta \to \infty$ and again use the saddle point method to solve the integrals on $x$ and $s$, which means they are dominated by their maximum value: 
 
 \begin{align}
   \label{eq:a_48}
-  h(\beta \to \infty)& = \left\langle \max_s \left[-\frac{\hat{\chi}}{2}s^2 + (t \sqrt{\hat{\gamma} - \Delta
-      \hat{\kappa}^2} + \hat{\kappa}\epsilon) s\right] \right\rangle_t +
+  h(\beta \to \infty)& = \left\langle \max_s \left[-\frac{\hat{\chi}}{2}s^2 + (t \sqrt{\hat{\gamma} - \hat{\kappa}^2 \Delta
+      } + \hat{\kappa}\epsilon) s\right] \right\rangle_t +
   \frac{1}{2} \left(\Omega \hat{\chi} - \frac{\hat{\gamma}
       \chi}{n\Delta}\right) - \frac{1}{n} \kappa \hat{\kappa} + \nonumber\\ &+
   \frac{1}{n} \left\langle \max_x \left[U(x) - \frac{(x - x_0 + \kappa +
-      \sqrt{n\Delta\Omega}t)^2}{2\chi}\right] \right\rangle_{t,x_o}
+      \sqrt{n\Omega\Delta}t)^2}{2\chi}\right] \right\rangle_{t,x_o}
 \end{align}
 
 Replacing in equation \eqref{eq:a_48} the variables $x$ and $s$ by their maximum values $x^\ast$ and $s^\ast$ and taking the derivatives on the order parameters we finally have the saddle point equations for $h(\theta)$:
@@ -429,23 +428,23 @@ Replacing in equation \eqref{eq:a_48} the variables $x$ and $s$ by their maximum
 \begin{align}
   \frac{\del h}{\del \Omega} & = \frac{\hat{\chi}}{2} -
   \frac{1}{2\chi} \sqrt{\frac{\Delta}{n\Omega}}\left\langle (x^* - x_0
-  + \kappa + t \sqrt{n\Delta\Omega})t\right \rangle_{t,x_0} = 0   \label{eq:a_omega}\\
+  + \kappa + t \sqrt{n\Omega\Delta})t\right \rangle_{t,x_0} = 0   \label{eq:a_omega}\\
   \frac{\del h}{\del \kappa} & = -\frac{1}{n}\hat{\kappa} -
   \frac{1}{n\chi}\left\langle x^* - x_0 + \kappa +
-    t\sqrt{n\Delta\Omega} \right \rangle_{t,x_0} = 0  \label{eq:a_kappa} \\
-  \frac{\del h}{\del \hat{\kappa}} & = -\frac{\Delta\hat{\kappa}}{\sqrt{\hat{\gamma} - \Delta
-      \hat{\kappa}^2}} \left\langle t s^*\right\rangle_t + \epsilon
+    t\sqrt{n\Omega\Delta} \right \rangle_{t,x_0} = 0  \label{eq:a_kappa} \\
+  \frac{\del h}{\del \hat{\kappa}} & = -\frac{\hat{\kappa}\Delta}{\sqrt{\hat{\gamma} - 
+      \hat{\kappa}^2\Delta}} \left\langle t s^*\right\rangle_t + \epsilon
   \left\langle s^*\right\rangle_t - \frac{\kappa}{n} = 0 \label{eq:a_hatkappa}\\
-  \frac{\del h}{\del \hat{\gamma}} & = \frac{1}{2\sqrt{\hat{\gamma} - \Delta
-      \hat{\kappa}^2}} \left\langle t s^*\right\rangle_t -
+  \frac{\del h}{\del \hat{\gamma}} & = \frac{1}{2\sqrt{\hat{\gamma} - 
+      \hat{\kappa}^2 \Delta}} \left\langle t s^*\right\rangle_t -
   \frac{\chi}{2n\Delta} = 0\label{eq:a_gamma}\\
   \frac{\del h}{\del \chi} & = - \frac{\hat{\gamma}}{2n\Delta} + \frac{\left\langle (x^* - x_0 + \kappa +
-    t\sqrt{n\Delta\Omega})^2 \right \rangle_{t,x_0}}{2n\chi^2} = 0\label{eq:a_chi}\\
+    t\sqrt{n\Omega\Delta})^2 \right \rangle_{t,x_0}}{2n\chi^2} = 0\label{eq:a_chi}\\
   \frac{\del h}{\del \hat{\chi}} & = -\frac{1}{2} \left\langle (s^*)^2
   \right\rangle_t + \frac{1}{2} \Omega = 0\label{eq:a_hatchi}
 \end{align}
 
-We can find $x^\ast$ by solving $\frac{\del}{\del x} \left[U(x) - \frac{(x - x_0 + \kappa + \sqrt{n\Delta\Omega}t)^2}{2\chi}\right] = 0$, resulting in the implicit equation
+We can find $x^\ast$ by solving $\frac{\del}{\del x} \left[U(x) - \frac{(x - x_0 + \kappa + \sqrt{n\Omega\Delta}t)^2}{2\chi}\right] = 0$, resulting in the implicit equation
 
 \begin{equation}
   \label{eq:a_55}
@@ -460,7 +459,7 @@ We can replace this in the equations \eqref{eq:a_omega} - \eqref{eq:a_hatchi} to
   \hat{\kappa} = -\left \langle U'(x^*) \right \rangle_{t,x_0}
 \end{equation}
 
-This allows us to identify $\hat{\kappa} = -p$ due to the price equation derived from the first order conditions of the consumer's maximization problems (equation \eqref{eq:p}). Equation \eqref{eq:a_hatchi} allows us to write
+This allows us to identify $\hat{\kappa} = -p$ due to the price equation derived from the first order conditions of the consumer's maximization problems. Equation \eqref{eq:a_hatchi} allows us to write
 
 \begin{equation}
   \label{eq:a_57}
@@ -487,7 +486,7 @@ With that, $U'(x)$ variance is written as
 
 \begin{equation}
   \label{eq:a_60}
-\sigma = \sqrt{\hat{\gamma} - \Delta \hat{\kappa}^2} = \sqrt{\Delta
+\sigma = \sqrt{\hat{\gamma} - \hat{\kappa}^2 \Delta} = \sqrt{\Delta
     \left(\left \langle U'(x^*)^2 \right \rangle_{t,x_0} - \left
         \langle U'(x^*) \right \rangle_{t,x_0}^2 \right)}
 \end{equation}

@@ -23,23 +23,25 @@ def entropy(m):
     return res
 
 m_list = np.linspace(-1, 1, 200)
-
+font_size = 45
 # PLOT ENTROPY
-fig, ax = pl.subplots()
-ax.plot(m_list, entropy(m_list))
-ax.set_xlabel(r'$m$')
-ax.set_ylabel(r'$H[P]$')
+fig, ax = pl.subplots(figsize=(12, 12))
+ax.plot(m_list, entropy(m_list), linewidth=6)
+ax.set_xlabel(r'$m$', fontsize=font_size)
+ax.set_ylabel(r'$H[P]$', fontsize=font_size)
+ax.tick_params(labelsize=font_size - 10)
 sns.despine()
 fig.savefig('fig1a.png', bbox_inches='tight')
 fig.clf()
 
 # PLOT PROBABILITY DISTRIBUTIONS
 
-fig, ax = pl.subplots()
+fig, ax = pl.subplots(figsize=(12, 12))
 for x in [-1, 0, 1]:
-    ax.plot(m_list, prob(x, m_list), label=r'$x = %d$' % x)
-ax.set_xlabel(r'$m$')
-ax.set_ylabel(r'$P(x | m)$')
-ax.legend(loc='best', frameon=False)
+    ax.plot(m_list, prob(x, m_list), label=r'$x = %d$' % x, linewidth=6)
+ax.set_xlabel(r'$m$', fontsize=font_size)
+ax.set_ylabel(r'$P(x | m)$', fontsize=font_size)
+ax.tick_params(labelsize=font_size - 10)
+ax.legend(loc='best', frameon=False, fontsize = font_size - 20)
 sns.despine()
 fig.savefig('fig1b.png', bbox_inches='tight')
